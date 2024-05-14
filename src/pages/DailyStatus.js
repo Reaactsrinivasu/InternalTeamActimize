@@ -103,7 +103,7 @@ const DailyStatus = () => {
       setEditMode(false)
       dispatch(loadStatusDetailsStart());
       setLoading(false);
-    }, 300)
+    }, 500)
   }, []);
 
   // Delete status handler

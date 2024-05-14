@@ -12,6 +12,7 @@ import {
   generateValidationSchema,
 } from "../components/Validations";
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const style = {
   p: 4,
@@ -22,7 +23,7 @@ const style = {
   maxHeight: '100%',
   maxWidth: '500vw',
   overflowY: 'auto',
-  borderRadius:'5px',
+  borderRadius: '5px',
   position: 'absolute',
   backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor,
   transform: 'translate(-50%, -50%)',
@@ -37,6 +38,7 @@ const Gadgetsmangement = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [initialFormValue, setInitialFormValue] = useState(null);
   const handleOpen = () => { setOpen(true); }
@@ -92,6 +94,12 @@ const Gadgetsmangement = () => {
   useEffect(() => {
     dispatch(loadGadgetDetailsStart());
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  })
   const allusersnamedata = useSelector((state) => state.alluserdata.data || []);
   useEffect(() => {
     dispatch(loadAllUsersStart());
@@ -155,12 +163,7 @@ const Gadgetsmangement = () => {
         <Controls.Box>
           <Controls.ReusablePaper elevation={1} sx={{ padding: '10px', mb: 2, mt: 2, boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', borderRadius: '10px' }} >
             <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', }}>
-              {/* <Controls.ResuableHeaderTypo
-              typographyComponent="span"
-              typographyVariant="h6"
-              sx={{ fontSize: '23px', mt: 0.5, ml: 2 }}
-              typographyText="Expert Gadgets"
-            /> */}
+
               <Controls.Typography variant="h2" sx={{ mt: 0 }}>
                 Expert Gadgets
               </Controls.Typography>
@@ -569,22 +572,22 @@ const Gadgetsmangement = () => {
                         </Controls.TextField>
                       </Controls.Grid>
                     </Controls.Grid>
-                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop:'10px' }}>
-                    <Controls.FormAddCloseButton
-                    variant="contained"
-                    onClick={() => {
-                      handleClose();
-                    }}
-                    buttonText="Close"
-                  />
-                  <Controls.FormAddCloseButton
-                    buttonType="submit"
-                    variant="contained"
-                    disabled={
-                      editMode ? !formik.dirty || !isFormChanged() : false
-                    }
-                    buttonText={!editMode ? "Add" : "Update"}
-                  />
+                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '10px' }}>
+                      <Controls.FormAddCloseButton
+                        variant="contained"
+                        onClick={() => {
+                          handleClose();
+                        }}
+                        buttonText="Close"
+                      />
+                      <Controls.FormAddCloseButton
+                        buttonType="submit"
+                        variant="contained"
+                        disabled={
+                          editMode ? !formik.dirty || !isFormChanged() : false
+                        }
+                        buttonText={!editMode ? "Add" : "Update"}
+                      />
                     </Controls.Typography>
                   </Controls.Box>
                 </Controls.Grid>
@@ -592,27 +595,36 @@ const Gadgetsmangement = () => {
             </form>
           </Controls.Modal>
         </Controls.Box>
-        {!message ? (
-          
-           <>
-           <NoDataFound />
-           </>
+        {loading ? (
+          <LoadingComponent />
         ) : (
           <>
-          <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
-            {expertsGadgetsData?.length >= 0 && expertsGadgetsData
-              ? (memoizedTable)
-              : null}
-          </Controls.Paper>
-  
-          <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-                <Controls.ReusablePagination
-                  onChange={handlePageChange}
-                  count={totalPages} color="success" />
-              </Controls.Grid>
+            {!message ? (
+
+              <>
+                <NoDataFound />
+              </>
+            ) : (
+              <>
+                <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
+                  {expertsGadgetsData?.length >= 0 && expertsGadgetsData
+                    ? (memoizedTable)
+                    : null}
+                </Controls.Paper>
+
+                <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
+                  <Controls.ReusablePagination
+                    onChange={handlePageChange}
+                    count={totalPages} color="success" />
+                </Controls.Grid>
+              </>
+            )}
+
           </>
         )}
- 
+
+
+
       </>
     </ThemeProvider>
   )

@@ -73,7 +73,7 @@ const Skills = () => {
     setTimeout(() => {
       dispatch(loadSkillDetailsStart());
       setLoading(false);
-    }, 300)
+    }, 500)
   }, [])
 
 

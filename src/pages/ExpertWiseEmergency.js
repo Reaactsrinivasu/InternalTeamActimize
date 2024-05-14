@@ -30,7 +30,7 @@ const ExpertWiseEmergency = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200)
+    }, 500)
   })
 
   const [open, setOpen] = useState(false);

@@ -86,7 +86,7 @@ const EmergencyDetails = () => {
     setTimeout(() => {
       dispatch(loadEmergencyDetailsStart());
       setLoading(false);
-    }, 300)
+    }, 500)
   }, [])
 
   let id = userInfo.id;

@@ -1,14 +1,29 @@
 import React from "react";
 import Controls from "./Controls";
+import { PulseLoader } from "react-spinners";
+import theme from "../Theme";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const LoadingComponent = () => {
-    return(
+    return (
         <>
-        <Controls.Grid container sx={{justifyContent:'center', marginTop:'15%'}}>
-        <Controls.Grid>
-        <img src="https://images.yourstory.com/cs/images/companies/9c8b94c1074c-202107190215022removebgpreview1-1663829828572.jpg?fm=auto&ar=1:1&mode=fill&fill=solid&fill-color=fff"  style={{width:'50px', height:'50px'}}/>
-        </Controls.Grid>
-        </Controls.Grid>
+            <Controls.Grid container sx={{ justifyContent: 'center', marginTop: '15%' }}>
+                <Controls.Grid>
+                    <PulseLoader
+                        color={theme.palette.error.main}
+                        loading={true}
+                        css={override}
+                        size={10}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
+                </Controls.Grid>
+            </Controls.Grid>
         </>
     )
 }

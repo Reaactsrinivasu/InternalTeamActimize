@@ -12,6 +12,7 @@ import { initialValues, generateValidationSchema, } from "../components/Validati
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 
 const columns = [
@@ -40,6 +41,7 @@ const ExpertPerformanceAppraisals = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loading , setLoading] = useState(true);
   const [initialFormValue, setInitialFormValue] = useState(null);
   const [dateChanged, setDateChanged] = useState(false); // Track if date field has been changed
   const handleOpen = () => { setDateChanged(false); setOpen(true); }
@@ -102,6 +104,13 @@ const ExpertPerformanceAppraisals = () => {
   useEffect(() => {
     dispatch(loadPerformanceDetailsStart());
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  })
+
   const allusersnamedata = useSelector((state) => state.alluserdata.data || []);
   useEffect(() => {
     dispatch(loadAllUsersStart());
@@ -281,24 +290,31 @@ const ExpertPerformanceAppraisals = () => {
             </form>
           </Controls.Modal>
         </Controls.Box>
-        {performancedata?.length > 0 ? (
-
-
-          <>
-            <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
-              {performancedata?.length >= 0 && performancedata
-                ? (memoizedTable)
-                : null}
-            </Controls.Paper>
-            <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-              <Controls.ReusablePagination
-                onChange={handlePageChange}
-                count={totalPages} color="success" />
-            </Controls.Grid>
-          </>
+        {loading ? (
+          <LoadingComponent />
         ) : (
           <>
-            <NoDataFound />
+          {performancedata?.length > 0 ? (
+  
+  
+            <>
+              <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
+                {performancedata?.length >= 0 && performancedata
+                  ? (memoizedTable)
+                  : null}
+              </Controls.Paper>
+              <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
+                <Controls.ReusablePagination
+                  onChange={handlePageChange}
+                  count={totalPages} color="success" />
+              </Controls.Grid>
+            </>
+          ) : (
+            <>
+              <NoDataFound />
+            </>
+          )}
+
           </>
         )}
 

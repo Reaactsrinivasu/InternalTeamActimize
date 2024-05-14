@@ -75,7 +75,7 @@ const Leaves = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 500);
   })
 
 

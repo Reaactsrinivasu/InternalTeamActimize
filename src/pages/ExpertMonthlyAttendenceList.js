@@ -10,6 +10,7 @@ import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
 import NoDataFound from '../components/NoDataComponent';
+import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const columns = [
   { id: "id", label: "S.No" },
@@ -121,7 +122,7 @@ const ExpertMonthlyAttendenceList = () => {
             </Controls.Box>
           </Controls.ReusablePaper>
         </Controls.Box>
-        <Controls.Paper sx={{ mt: 5, borderRadius: '10px', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
+        {/* <Controls.Paper sx={{ mt: 5, borderRadius: '10px', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}> */}
           <Controls.Grid container spacing={2}>
             <Controls.Grid item xs={10}>
               <Controls.Paper sx={{ borderRadius: "10px" }}>
@@ -184,7 +185,7 @@ const ExpertMonthlyAttendenceList = () => {
             </Controls.Grid>
 
           </Controls.Grid>
-        </Controls.Paper>
+        {/* </Controls.Paper> */}
 
         {message ? (
           <>
@@ -197,8 +198,8 @@ const ExpertMonthlyAttendenceList = () => {
         ) : (
           <>
 
-            <Controls.Grid sx={{ marginTop: '30px' }}>
-              <NoDataFound />
+            <Controls.Grid container sx={{ marginTop: '30px', justifyContent:'center' }}>
+             <PleasEnterDataImgComponent />
             </Controls.Grid>
           </>
         )}

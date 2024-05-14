@@ -171,7 +171,7 @@ const ProjectsMangement = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 200);
+    }, 500);
   })
 
   let id = userInfo.id;

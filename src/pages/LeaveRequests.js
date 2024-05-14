@@ -12,6 +12,7 @@ import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
 
@@ -32,6 +33,7 @@ const LeaveRequests = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [loading , setLoading] = useState(true);
   const handleOpen = () => { setOpen(true); }
   const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
   const dispatch = useDispatch();
@@ -88,6 +90,13 @@ const LeaveRequests = () => {
   useEffect(() => {
     dispatch(loadLeaveRequestsDetailsStart());
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  })
+
   let id = userInfo.id;
   useEffect(() => {
     if (id) {
@@ -100,7 +109,7 @@ const LeaveRequests = () => {
     }
   }, [userInfo]);
 
-  const message = expertLeaveRequestData?.length > 0  ? false : true ;
+  const message = 'No records found';
 
   return (
     <>
@@ -114,88 +123,94 @@ const LeaveRequests = () => {
             </Controls.Box>
           </Controls.ReusablePaper>
         </Controls.Box>
-        { !message ? (
-          
-           <>
-           <NoDataFound />
-           </>
+        {loading ? (
+          <LoadingComponent />
         ) : (
           <>
-          <Controls.Paper sx={{ mt: 2, borderRadius: '10px', }}>
-            <Controls.TableContainer component={Controls.Paper} sx={{ borderRadius: '10px', }}>
-              <Controls.Table sx={{ minWidth: 100 }} aria-label="customized table">
-                <Controls.TableHead sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablehead.backgroundColor, }}>
-                  <Controls.TableRow >
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">S.No</StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Expert Name </StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Leave Purpose&nbsp;</StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Leave Type&nbsp;</StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">No of Leaves&nbsp;</StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Start Date &nbsp;</StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">End Date &nbsp;</StyledTableCell>
-                    <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Approovals &nbsp;</StyledTableCell>
-                  </Controls.TableRow>
-                </Controls.TableHead>
-                <Controls.TableBody >
-                  {Array.isArray(leavesdata) && leavesdata.length > 0 ? (
-                    leavesdata.map((item, index) => (
-                      <StyledTableRow key={index} sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablebody.backgroundColor, }}>
-                        <StyledTableCell align="center" component="th" scope="row"
-                          sx={{
+          { expertLeaveRequestData?.message === message ? (
+            
+             <>
+             <NoDataFound />
+             </>
+          ) : (
+            <>
+            <Controls.Paper sx={{ mt: 2, borderRadius: '10px', }}>
+              <Controls.TableContainer component={Controls.Paper} sx={{ borderRadius: '10px', }}>
+                <Controls.Table sx={{ minWidth: 100 }} aria-label="customized table">
+                  <Controls.TableHead sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablehead.backgroundColor, }}>
+                    <Controls.TableRow >
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">S.No</StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Expert Name </StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Leave Purpose&nbsp;</StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Leave Type&nbsp;</StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">No of Leaves&nbsp;</StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Start Date &nbsp;</StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">End Date &nbsp;</StyledTableCell>
+                      <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Approovals &nbsp;</StyledTableCell>
+                    </Controls.TableRow>
+                  </Controls.TableHead>
+                  <Controls.TableBody >
+                    {Array.isArray(leavesdata) && leavesdata.length > 0 ? (
+                      leavesdata.map((item, index) => (
+                        <StyledTableRow key={index} sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablebody.backgroundColor, }}>
+                          <StyledTableCell align="center" component="th" scope="row"
+                            sx={{
+                              color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
+                            }}>
+                            {index + 1}
+                          </StyledTableCell>
+                          <StyledTableCell align="center" sx={{
                             color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
                           }}>
-                          {index + 1}
-                        </StyledTableCell>
-                        <StyledTableCell align="center" sx={{
-                          color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
-                        }}>
-                          {allusersnamedata.find(user => user.id === item.user_id)?.name || 'Unknown'}
-                        </StyledTableCell>
-                        <StyledTableCell sx={{
-                          color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
-                        }} align="center">{item.leave_purpose}</StyledTableCell>
-                        <StyledTableCell sx={{
-                          color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
-                        }} align="center">{item.type_of_leave}</StyledTableCell>
-                        <StyledTableCell sx={{
-                          color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
-                        }} align="center">{item.number_of_leaves}</StyledTableCell>
-                        <StyledTableCell sx={{
-                          color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
-                        }} align="center">{dayjs(item.start_date, "MM-DD-YYYY", true).isValid() ? dayjs(item.start_date, "MM-DD-YYYY").format("DD-MM-YYYY") : 'Invalid Date'
-                          }</StyledTableCell>
-                        <StyledTableCell sx={{
-                          color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
-                        }} align="center">{dayjs(item.end_date, "MM-DD-YYYY", true).isValid() ? dayjs(item.end_date, "MM-DD-YYYY").format("DD-MM-YYYY") : 'Invalid Date'
-                          }</StyledTableCell>
-                        <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Controls.Switch
-                            checked={checkedState[item.id] !== undefined ? checkedState[item.id] : item.approval}
-                            onChange={(event) => handleSwitchChange(event, item.id, item.approval)}
-                            inputProps={{ 'aria-label': 'controlled' }}
-                          />
-                          <span>
-                            {checkedState[item.id] !== undefined ? (checkedState[item.id] ? 'Approved' : 'Not Approved') : (item.approval ? 'Approved' : 'Not Approved')}
-                          </span>
-                        </StyledTableCell>
-  
+                            {allusersnamedata.find(user => user.id === item.user_id)?.name || 'Unknown'}
+                          </StyledTableCell>
+                          <StyledTableCell sx={{
+                            color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
+                          }} align="center">{item.leave_purpose}</StyledTableCell>
+                          <StyledTableCell sx={{
+                            color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
+                          }} align="center">{item.type_of_leave}</StyledTableCell>
+                          <StyledTableCell sx={{
+                            color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
+                          }} align="center">{item.number_of_leaves}</StyledTableCell>
+                          <StyledTableCell sx={{
+                            color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
+                          }} align="center">{dayjs(item.start_date, "MM-DD-YYYY", true).isValid() ? dayjs(item.start_date, "MM-DD-YYYY").format("DD-MM-YYYY") : 'Invalid Date'
+                            }</StyledTableCell>
+                          <StyledTableCell sx={{
+                            color: theme.components.tables.styleOverrides.containedPrimarytablebody.color,
+                          }} align="center">{dayjs(item.end_date, "MM-DD-YYYY", true).isValid() ? dayjs(item.end_date, "MM-DD-YYYY").format("DD-MM-YYYY") : 'Invalid Date'
+                            }</StyledTableCell>
+                          <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Controls.Switch
+                              checked={checkedState[item.id] !== undefined ? checkedState[item.id] : item.approval}
+                              onChange={(event) => handleSwitchChange(event, item.id, item.approval)}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                            <span>
+                              {checkedState[item.id] !== undefined ? (checkedState[item.id] ? 'Approved' : 'Not Approved') : (item.approval ? 'Approved' : 'Not Approved')}
+                            </span>
+                          </StyledTableCell>
+    
+                        </StyledTableRow>
+                      ))
+                    ) : (
+                      <StyledTableRow sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablebody.backgroundColor, }}>
+    
                       </StyledTableRow>
-                    ))
-                  ) : (
-                    <StyledTableRow sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablebody.backgroundColor, }}>
-  
-                    </StyledTableRow>
-  
-                  )}
-                </Controls.TableBody>
-              </Controls.Table>
-            </Controls.TableContainer>
-          </Controls.Paper>
-          <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-            <Controls.ReusablePagination
-              onChange={handlePageChange}
-              count={totalPages}  />
-          </Controls.Grid>
+    
+                    )}
+                  </Controls.TableBody>
+                </Controls.Table>
+              </Controls.TableContainer>
+            </Controls.Paper>
+            <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
+              <Controls.ReusablePagination
+                onChange={handlePageChange}
+                count={totalPages}  />
+            </Controls.Grid>
+            </>
+          )}
           </>
         )}
       </ThemeProvider>
