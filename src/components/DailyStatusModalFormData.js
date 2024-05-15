@@ -19,7 +19,6 @@ const style = {
 };
 
 const DailyStatusModalFormData = ({ show, closeModal, data }) => {
-    const descriptionData = data?.description;
     return (
         <>
             <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', ml: 5, mr: 5 }}>
@@ -29,22 +28,48 @@ const DailyStatusModalFormData = ({ show, closeModal, data }) => {
                     aria-describedby="modal-modal-description"
                 >
                     <Controls.Grid sx={style}>
-                        <Controls.Grid container sx={{display:'block'}}>
-                            <Controls.Grid sx={{display:'flex'}}>
-                                {/* <Controls.Grid xs={6} >
-                                <Controls.Typography variant='h4' sx={{ textAlign: 'center', marginBottom: '20px' }}>{data?.daily_status}</Controls.Typography>
+                        <Controls.Grid container sx={{ display: 'block' }}>
+                            <Controls.Grid sx={{ display: 'flex', marginBottom: '20px' }}>
+                                <Controls.Grid xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Controls.Grid xs={5} sx={{ display: 'flex', }}>
+                                        <Controls.Typography variant='h5'>Status/Update </Controls.Typography>
+                                        <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                                    </Controls.Grid>
+                                    <Controls.Grid xs={6}>
+                                        <Controls.Typography variant='h4' sx={{ textAlign: 'center', }}>{data?.daily_status}</Controls.Typography>
+                                    </Controls.Grid>
 
                                 </Controls.Grid>
-                                <Controls.Grid xs={6}>
-                                <Controls.Typography variant='h4' sx={{ textAlign: 'center', marginBottom: '20px' }}>{data?.task_progress}</Controls.Typography>
-                                     
-                                </Controls.Grid> */}
-                            </Controls.Grid>
-                            <Controls.Grid>
-                                <Controls.Typography variant='h2' sx={{ textAlign: 'center', marginBottom: '20px' }}>Description</Controls.Typography>
-                            </Controls.Grid>
-                            <Controls.Typography sx={{ wordWrap: 'break-word' }}>{descriptionData}</Controls.Typography>
+                                <Controls.Grid xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Controls.Grid xs={5} sx={{ display: 'flex', }}>
+                                        <Controls.Typography variant='h5'>Task Progress </Controls.Typography>
+                                        <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                                    </Controls.Grid>
+                                    <Controls.Grid xs={6}>
+                                        <Controls.Typography variant='h4' sx={{ textAlign: 'center', }}>{data?.task_progress}</Controls.Typography>
+                                    </Controls.Grid>
 
+                                </Controls.Grid>
+                            </Controls.Grid>
+
+                            <Controls.Grid container sx={{ justifyContent: 'center',}} >
+                            <Controls.Grid xs={10} sx={{ display: 'block', alignItems: 'center' , margin:'15px'}}>
+                                    <Controls.Grid xs={12} >
+                                        <Controls.Typography variant='h3' sx={{textAlign:'center'}}>Task Name</Controls.Typography>
+                                    </Controls.Grid>
+                                    <Controls.Grid xs={12}>
+                                        <Controls.Typography variant='h5' sx={{ textAlign:'center' }}>{data?.task_name}</Controls.Typography>
+                                    </Controls.Grid>
+                                </Controls.Grid>
+                                <Controls.Grid xs={10} sx={{ display: 'block', alignItems: 'center' }}>
+                                    <Controls.Grid xs={12} >
+                                        <Controls.Typography variant='h3' sx={{textAlign:'center'}}>Description</Controls.Typography>
+                                    </Controls.Grid>
+                                    <Controls.Grid xs={12}>
+                                        <Controls.Typography variant='h5' sx={{ textAlign:'center' }}>{data?.description}</Controls.Typography>
+                                    </Controls.Grid>
+                                </Controls.Grid>
+                            </Controls.Grid>
                         </Controls.Grid>
                         <Controls.Grid sx={{ marginTop: '20px' }}>
                             <Controls.FormAddCloseButton

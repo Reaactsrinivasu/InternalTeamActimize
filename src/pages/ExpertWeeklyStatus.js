@@ -116,7 +116,7 @@ const ExpertWeeklyStatus = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 300);
+    }, 1000);
   })
 
   let id = userInfo.id;

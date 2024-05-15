@@ -47,7 +47,7 @@ const BirthdaysManagement = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 1000);
 })
 
 

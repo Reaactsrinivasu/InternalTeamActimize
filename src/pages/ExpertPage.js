@@ -24,7 +24,7 @@ const ExpertPage = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 200)
+    }, 1000)
   })
 
   const navigate = useNavigate();

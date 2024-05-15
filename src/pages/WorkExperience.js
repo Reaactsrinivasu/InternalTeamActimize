@@ -81,6 +81,8 @@ const WorkExperience = () => {
     validationSchema: validationSchema,
   });
   const workExperienceData = useSelector((state) => state.workexpdata?.data?.work_experiences || []);
+  const totalRecords = useSelector((state) => state.workexpdata?.data?.total_count || []);
+  console.log('this is data ---->', workExperienceData);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -93,15 +95,15 @@ const WorkExperience = () => {
   };
 
   useEffect(() => {
-      dispatch(loadWorkExperienceDetailsStart());
-      
+    dispatch(loadWorkExperienceDetailsStart());
+
   }, [])
-  
+
   useEffect(() => {
     setTimeout(() => {
       dispatch(loadWorkExperienceDetailsStart());
       setLoading(false);
-  }, 300)
+    }, 1000)
   }, [])
 
   let id = userInfo.id;
@@ -134,8 +136,6 @@ const WorkExperience = () => {
   const isFormChanged = () => {
     return JSON.stringify(formik.values) !== JSON.stringify(initialFormValue);
   }
-
- 
 
   return (
 
@@ -208,6 +208,7 @@ const WorkExperience = () => {
                         formik.setFieldTouched("JoinDate");
                         formik.setFieldValue("date_of_join", joinDate ? joinDate.toString() : '');
                       }}
+                    
                       inputFormat="DD-MM-YYYY"
                       placeholder="DD-MM-YYYY"
                       type="date"
@@ -255,8 +256,8 @@ const WorkExperience = () => {
                     onChange={formik.handleChange}
                     error={formik.touched.designation && Boolean(formik.errors.designation)}
                     helperText={formik.touched.designation && formik.errors.designation ? (<span style={{ color: 'red' }}>{formik.errors.designation}</span>) : ('')} />
-                  <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop:'20px' }}>
-                 
+                  <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
+
                     <Controls.FormAddCloseButton
                       variant="contained"
                       onClick={() => {
@@ -283,27 +284,27 @@ const WorkExperience = () => {
         <LoadingComponent />
       ) : (
         <>
-        {workExperienceData?.length > 0 && workExperienceData ? (
-          <>
-            <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
-              {workExperienceData?.length >= 0 && workExperienceData
-                ? (memoizedTable)
-                : null}
-            </Controls.Paper>
-  
-            <Controls.Grid container sx={{ marginTop: '30px', justifyContent: 'center', }}>
-              <Controls.ReusablePagination count={Math.ceil(workExperienceData.length / itemsPerPage)} page={currentPage} onChange={handlePageChange} />
-            </Controls.Grid>
-          </>
-        ) : (
-          <>
-            <NoDataFound />
-          </>
-  
-        )}
+          {workExperienceData?.length > 0 && workExperienceData ? (
+            <>
+              <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
+                {workExperienceData?.length >= 0 && workExperienceData
+                  ? (memoizedTable)
+                  : null}
+              </Controls.Paper>
+
+              <Controls.Grid container sx={{ marginTop: '30px', justifyContent: 'center', }}>
+                <Controls.ReusablePagination count={Math.ceil(totalRecords / itemsPerPage)} page={currentPage} onChange={handlePageChange} />
+              </Controls.Grid>
+            </>
+          ) : (
+            <>
+              <NoDataFound />
+            </>
+
+          )}
         </>
       )}
-     
+
 
 
     </>

@@ -47,7 +47,7 @@ const BankDetails = () => {
   useEffect(() => {
     setTimeout(() => {
         setLoading(false)
-    },200)
+    },1000)
   })
 
   useEffect(() => {

@@ -105,7 +105,7 @@ const HolidaysMangement = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 1000);
   })
 
   const handleDelete = (id) => {

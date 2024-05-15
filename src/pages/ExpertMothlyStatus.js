@@ -12,6 +12,7 @@ import theme from "../Theme";
 import { loadMonthlyDetailsStart } from '../redux/actions/ExpertMonthlyActions';
 import Controls from "../components/Controls";
 import NoDataFound from '../components/NoDataComponent';
+import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const columns = [
   { id: "id", label: "S.No" },
@@ -189,7 +190,7 @@ const color = theme.palette.error.main
          
             <>
             <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-              <NoDataFound />
+              <PleasEnterDataImgComponent text='Date' />
             </Controls.Grid>
           </>
         ) : (

@@ -110,7 +110,7 @@ const ExpertCertificateVarification = () => {
   useEffect(() =>{
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 1000);
   })
 
   let id = userInfo.id;

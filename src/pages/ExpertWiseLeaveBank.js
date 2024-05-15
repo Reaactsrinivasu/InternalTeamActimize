@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import Controls from "../components/Controls";
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,14 +17,21 @@ import PersonOffIcon from '@mui/icons-material/PersonOff';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const ExpertWiseLeaveBank = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   const expertfamilywise = useSelector((state) => state.expertleavebankwiseData);
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(loadLeaveBankWiseDetailsStart(id));
   }, [dispatch, id]);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  })
   const message = expertfamilywise?.data?.data?.message ? false : true
   return (
     <ThemeProvider theme={theme}>
@@ -41,86 +48,93 @@ const ExpertWiseLeaveBank = () => {
         <Controls.Grid container sx={{ display: 'flex', width: '100%', paddingLeft: '0%' }}>
           <Controls.Grid container item md={12} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor, padding: '35px 0px', borderRadius: '10px', }} >
             <Controls.Grid item md={8} sx={{ marginRight: '20px' }}>
-              { !message  ? (
-                
-                 <>
-                 <NoDataFound />
-                 </>
+              {loading ? (
+                <LoadingComponent />
               ) : (
                 <>
-                <Controls.Grid container xs={12}>
-                  <Controls.Grid item xs={12} md={4} sx={{ padding: '0px 5px' }}>
-                    <Controls.Paper sx={{
-                      padding: '10px', borderRadius: '10px', backgroundColor: theme.palette.success.main,
-                      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-                      transition: 'box-shadow 0.3s ease',
-                      '&:hover': {
-                        boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
-                      },
-                    }}>
-                      <Controls.Typography variant='h6' sx={{ padding: '5px 0px', textAlign: 'center', }}>Total Leaves</Controls.Typography>
-                      <Divider sx={{ backgroundColor: theme.palette.error.main }} />
-  
-                      <Controls.Grid sx={{ display: 'flex', margin: '10px 0px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Total No of Leaves </Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.casual_leaves}</Controls.Typography>
-                      </Controls.Grid>
-                      <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Casual Leaves </Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.casual_leaves} </Controls.Typography>
-                      </Controls.Grid>
-                      <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Sick Leaves</Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.sick_leaves} </Controls.Typography>
-                      </Controls.Grid>
-                    </Controls.Paper>
-                  </Controls.Grid>
-                  <Controls.Grid item xs={12} md={4} sx={{ padding: '0px 5px', }}>
-                    <Controls.Paper sx={{
-                      padding: '10px 10px 40px 10px', borderRadius: '10px', backgroundColor: theme.palette.success.main,
-                      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-                      transition: 'box-shadow 0.3s ease',
-                      '&:hover': {
-                        boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
-                      },
-                    }}>
-                      <Controls.Typography variant='h6' sx={{ padding: '5px 0px', textAlign: 'center', }}>Total Taken Leaves</Controls.Typography>
-                      <Divider sx={{ backgroundColor: theme.palette.error.main }} />
-                      <Controls.Grid sx={{ display: 'flex', margin: '10px 0px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Taken Casual Leaves  </Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.taken_casual_leaves} </Controls.Typography>
-                      </Controls.Grid>
-                      <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Taken Sick Leaves </Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.taken_sick_leaves} </Controls.Typography>
-                      </Controls.Grid>
-                    </Controls.Paper>
-                  </Controls.Grid>
-                  <Controls.Grid item xs={12} md={4} sx={{ padding: '0px 5px' }}>
-                    <Controls.Paper sx={{
-                      padding: '10px 10px 40px 10px', borderRadius: '10px', backgroundColor: theme.palette.success.main,
-                      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-                      transition: 'box-shadow 0.3s ease',
-                      '&:hover': {
-                        boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
-                      },
-                    }}>
-  
-                      <Controls.Typography variant='h6' sx={{ padding: '5px 0px', textAlign: 'center', }}>Total Remaining Leaves</Controls.Typography>
-                      <Divider sx={{ backgroundColor: theme.palette.error.main }} />
-                      <Controls.Grid sx={{ display: 'flex', margin: '10px 0px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Remaining Sick Leaves   </Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.remaining_sick_leaves} </Controls.Typography>
-                      </Controls.Grid>
-                      <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
-                        <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Remaining Casual Leaves  </Controls.Typography>
-                        <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.remaining_casual_leaves} </Controls.Typography>
-                      </Controls.Grid>
-                    </Controls.Paper>
-                  </Controls.Grid>
-                </Controls.Grid>
+                 { !message  ? (
+                
+                <>
+                <NoDataFound />
+                </>
+             ) : (
+               <>
+               <Controls.Grid container xs={12}>
+                 <Controls.Grid item xs={12} md={4} sx={{ padding: '0px 5px' }}>
+                   <Controls.Paper sx={{
+                     padding: '10px', borderRadius: '10px', backgroundColor: theme.palette.success.main,
+                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                     transition: 'box-shadow 0.3s ease',
+                     '&:hover': {
+                       boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
+                     },
+                   }}>
+                     <Controls.Typography variant='h6' sx={{ padding: '5px 0px', textAlign: 'center', }}>Total Leaves</Controls.Typography>
+                     <Divider sx={{ backgroundColor: theme.palette.error.main }} />
+ 
+                     <Controls.Grid sx={{ display: 'flex', margin: '10px 0px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Total No of Leaves </Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.casual_leaves}</Controls.Typography>
+                     </Controls.Grid>
+                     <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Casual Leaves </Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.casual_leaves} </Controls.Typography>
+                     </Controls.Grid>
+                     <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Sick Leaves</Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.sick_leaves} </Controls.Typography>
+                     </Controls.Grid>
+                   </Controls.Paper>
+                 </Controls.Grid>
+                 <Controls.Grid item xs={12} md={4} sx={{ padding: '0px 5px', }}>
+                   <Controls.Paper sx={{
+                     padding: '10px 10px 40px 10px', borderRadius: '10px', backgroundColor: theme.palette.success.main,
+                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                     transition: 'box-shadow 0.3s ease',
+                     '&:hover': {
+                       boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
+                     },
+                   }}>
+                     <Controls.Typography variant='h6' sx={{ padding: '5px 0px', textAlign: 'center', }}>Total Taken Leaves</Controls.Typography>
+                     <Divider sx={{ backgroundColor: theme.palette.error.main }} />
+                     <Controls.Grid sx={{ display: 'flex', margin: '10px 0px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Taken Casual Leaves  </Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.taken_casual_leaves} </Controls.Typography>
+                     </Controls.Grid>
+                     <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Taken Sick Leaves </Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.taken_sick_leaves} </Controls.Typography>
+                     </Controls.Grid>
+                   </Controls.Paper>
+                 </Controls.Grid>
+                 <Controls.Grid item xs={12} md={4} sx={{ padding: '0px 5px' }}>
+                   <Controls.Paper sx={{
+                     padding: '10px 10px 40px 10px', borderRadius: '10px', backgroundColor: theme.palette.success.main,
+                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                     transition: 'box-shadow 0.3s ease',
+                     '&:hover': {
+                       boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
+                     },
+                   }}>
+ 
+                     <Controls.Typography variant='h6' sx={{ padding: '5px 0px', textAlign: 'center', }}>Total Remaining Leaves</Controls.Typography>
+                     <Divider sx={{ backgroundColor: theme.palette.error.main }} />
+                     <Controls.Grid sx={{ display: 'flex', margin: '10px 0px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Remaining Sick Leaves   </Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.remaining_sick_leaves} </Controls.Typography>
+                     </Controls.Grid>
+                     <Controls.Grid sx={{ display: 'flex', marginBottom: '10px' }}>
+                       <Controls.Typography variant='h5' sx={{ fontWeight: 'bold' }}>Remaining Casual Leaves  </Controls.Typography>
+                       <Controls.Typography variant='h6' sx={{ marginLeft: 'auto' }}>{expertfamilywise?.data?.data[0]?.remaining_casual_leaves} </Controls.Typography>
+                     </Controls.Grid>
+                   </Controls.Paper>
+                 </Controls.Grid>
+               </Controls.Grid>
+               </>
+             )}
                 </>
               )}
+             
             </Controls.Grid>
 
             <Controls.Grid container item md={3} sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarysidebar.containedPrimarysidebarheader.backgroundColor, boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', padding: '20px 0px', display: 'block', cursor: 'pointer', borderRadius: '10px' }} >

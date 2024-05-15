@@ -62,7 +62,7 @@ const FamilyDetails = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoding(false); 
-    }, 200); 
+    }, 1000); 
   }, []);
 
   // Delete family member handler

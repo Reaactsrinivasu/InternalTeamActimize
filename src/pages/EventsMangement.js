@@ -46,7 +46,7 @@ const EventsMangement = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [viewData, setViewData] = useState('');
+  const [viewData, setViewData] = useState([]);
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [initialFormValue, setInitialFormValue] = useState(null);
@@ -97,7 +97,7 @@ const EventsMangement = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 600,
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
@@ -123,7 +123,7 @@ const EventsMangement = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 200);
+    }, 900);
   })
   const handleDelete = (id) => {
     if (window.confirm('confirm to delete')) {
@@ -152,9 +152,9 @@ const EventsMangement = () => {
   }
 
   const handleModalFormOpen = (item) => {
-    setViewData(item)
-    setModalOpen(true)
-  }
+    setViewData(item);
+    setModalOpen(true);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -314,102 +314,153 @@ const EventsMangement = () => {
               <Controls.Grid>
                 <Controls.Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                   {expertEventsdata.map((item, index) => (
-                    <Controls.Card item xs={4} sx={{
-                      maxWidth: 300,
-                      // backgroundImage: `url('../assets/images/LOG 3.png')`
-                      backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor,
-                      marginRight: '20px',
-                      '&:hover': {
-                        transform: 'scale(1.05)'
-                      },
-                      transition: 'transform 0.4s ease'
+                    <>
+                      <Controls.Card item xs={4} sx={{
+                        maxWidth: 300,
+                        // backgroundImage: `url('../assets/images/LOG 3.png')`
+                        backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor,
+                        marginRight: '20px',
+                        '&:hover': {
+                          transform: 'scale(1.05)'
+                        },
+                        transition: 'transform 0.4s ease'
 
-                    }}>
-                      <Controls.Grid sx={{ display: 'flex' }}>
-                        <Controls.Grid sx={{ padding: '2px 0px 0px 4px' }}>
-                          <Controls.Typography variant='h3'>Event details</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid sx={{ marginLeft: 'auto' }}>
-                          <Controls.Grid container justifyContent="flex-end"  >
-                            <Controls.Grid item>
-                              <IconButton onClick={() => handleModalFormOpen(item.view)}>
-                                <RemoveRedEyeIcon sx={{ color: 'blue' }} />
-                              </IconButton>
-                              <IconButton sx={{ color: theme.palette.error.main, }} onClick={() => handleEdit(item)}>
-                                <EditIcon />
-                              </IconButton>
+                      }}>
+                        <Controls.Grid sx={{ display: 'flex' }}>
+                          <Controls.Grid sx={{ padding: '2px 0px 0px 4px' }}>
+                            <Controls.Typography variant='h3'>Event details</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid sx={{ marginLeft: 'auto' }}>
+                            <Controls.Grid container justifyContent="flex-end"  >
+                              <Controls.Grid item>
+                                <IconButton onClick={() => handleModalFormOpen(index)}>
+                                  <RemoveRedEyeIcon sx={{ color: 'blue' }} />
+                                </IconButton>
+                                <IconButton sx={{ color: theme.palette.error.main, }} onClick={() => handleEdit(item)}>
+                                  <EditIcon />
+                                </IconButton>
+                              </Controls.Grid>
+                              <Controls.Grid item>
+                                <IconButton sx={{ color: 'red', cursor: "pointer" }} onClick={() => handleDelete(item.id)}>
+                                  <DeleteIcon />
+                                </IconButton>
+                              </Controls.Grid>
                             </Controls.Grid>
-                            <Controls.Grid item>
-                              <IconButton sx={{ color: 'red', cursor: "pointer" }} onClick={() => handleDelete(item.id)}>
-                                <DeleteIcon />
-                              </IconButton>
+                          </Controls.Grid>
+
+                        </Controls.Grid>
+                        <Controls.CardContent sx={{ borderTop: '1px solid lightgrey', }}>
+                          <Controls.Grid container item xs={8} sx={{ margin: 'auto', display: 'flex' }}>
+                            <Controls.Grid item xs={5} sx={{}}>
+                              <Controls.Typography variant="h6" gutterBottom> Name : </Controls.Typography>
+                            </Controls.Grid>
+                            <Controls.Grid item xs={5}>
+                              <Controls.Typography variant="h6" gutterBottom>  {item.event_name} </Controls.Typography>
+
+                            </Controls.Grid>
+
+                            <Controls.Grid item xs={5} sx={{}}>
+                              <Controls.Typography variant="h6" gutterBottom>  Date :  </Controls.Typography>
+                            </Controls.Grid>
+                            <Controls.Grid item xs={6}>
+                              <Controls.Typography variant="h6" gutterBottom> {dayjs(item.event_date).format('MM-DD-YYYY')} </Controls.Typography>
+
+                            </Controls.Grid>
+
+                            <Controls.Grid item xs={5} sx={{}}>
+                              <Controls.Typography variant="h6" gutterBottom> Time : </Controls.Typography>
+                            </Controls.Grid>
+                            <Controls.Grid item xs={5}>
+                              <Controls.Typography variant="h6" gutterBottom>  {item.event_time} </Controls.Typography>
+
+                            </Controls.Grid>
+
+                            <Controls.Grid item xs={5} sx={{}}>
+                              <Controls.Typography variant="h6" gutterBottom> Venue : </Controls.Typography>
+                            </Controls.Grid>
+                            <Controls.Grid item xs={5}>
+                              <Controls.Typography variant="h6" gutterBottom>  {item.venue} </Controls.Typography>
+
+                            </Controls.Grid>
+
+                          </Controls.Grid>
+                        </Controls.CardContent>
+                      </Controls.Card>
+                      {viewData === index ? (
+                      <>
+                       <Controls.Modal
+                        open={modalOpen}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Controls.Box sx={styles}>
+                          <Controls.Grid container sx={{ margin: '15px 0px' }}>
+                            <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                              <Controls.Grid xs={3} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='h5'>Name</Controls.Typography>
+                                <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                              </Controls.Grid>
+                              <Controls.Grid xs={9} >
+                                <Controls.Typography variant='h5' sx={{ marginLeft: '40px' }}> {item.event_name}</Controls.Typography>
+                              </Controls.Grid>
+                            </Controls.Grid>
+                            <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                              <Controls.Grid xs={3} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='h5'>Date</Controls.Typography>
+                                <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                              </Controls.Grid>
+                              <Controls.Grid xs={9} >
+                                <Controls.Typography variant='h5' sx={{ marginLeft: '40px' }}>{dayjs(item.event_date).format('MM-DD-YYYY')}</Controls.Typography>
+                              </Controls.Grid>
+
+                            </Controls.Grid>
+                            <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                              <Controls.Grid xs={3} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='h5'>Time</Controls.Typography>
+                                <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                              </Controls.Grid>
+                              <Controls.Grid xs={9} >
+                                <Controls.Typography variant='h5' sx={{ marginLeft: '40px' }}> {item.event_time}</Controls.Typography>
+                              </Controls.Grid>
+
+                            </Controls.Grid>
+                            <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                              <Controls.Grid xs={3} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='h5'>Venue</Controls.Typography>
+                                <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                              </Controls.Grid>
+                              <Controls.Grid xs={9} >
+                                <Controls.Typography variant='h5' sx={{ marginLeft: '40px' }}>{item.venue}</Controls.Typography>
+                              </Controls.Grid>
+
                             </Controls.Grid>
                           </Controls.Grid>
-                        </Controls.Grid>
+                          <Controls.Typography variant='h2' sx={{ marginBottom: '10px' }}>View Event Details</Controls.Typography>
 
-                      </Controls.Grid>
-                      <Controls.CardContent sx={{ borderTop: '1px solid lightgrey', }}>
-                        <Controls.Grid container item xs={8} sx={{ margin: 'auto', display: 'flex' }}>
-                          <Controls.Grid item xs={5} sx={{}}>
-                            <Controls.Typography variant="h6" gutterBottom> Name : </Controls.Typography>
-                          </Controls.Grid>
-                          <Controls.Grid item xs={5}>
-                            <Controls.Typography variant="h6" gutterBottom>  {item.event_name} </Controls.Typography>
+                          <Controls.Typography sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }} >{item.view}</Controls.Typography>
 
-                          </Controls.Grid>
+                          <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
+                            <Controls.FormAddCloseButton
+                              variant="contained"
+                              onClick={() => {
+                                handleClose();
+                              }}
+                              buttonText="Close"
+                            />
+                          </Controls.Typography>
 
-                          <Controls.Grid item xs={5} sx={{}}>
-                            <Controls.Typography variant="h6" gutterBottom>  Date :  </Controls.Typography>
-                          </Controls.Grid>
-                          <Controls.Grid item xs={6}>
-                            <Controls.Typography variant="h6" gutterBottom> {dayjs(item.event_date).format('MM-DD-YYYY')} </Controls.Typography>
+                        </Controls.Box>
+                      </Controls.Modal>
+                      </>
+                      ) : ('')}
+                     
 
-                          </Controls.Grid>
+                    </>
 
-                          <Controls.Grid item xs={5} sx={{}}>
-                            <Controls.Typography variant="h6" gutterBottom> Time : </Controls.Typography>
-                          </Controls.Grid>
-                          <Controls.Grid item xs={5}>
-                            <Controls.Typography variant="h6" gutterBottom>  {item.event_time} </Controls.Typography>
 
-                          </Controls.Grid>
-
-                          <Controls.Grid item xs={5} sx={{}}>
-                            <Controls.Typography variant="h6" gutterBottom> Venue : </Controls.Typography>
-                          </Controls.Grid>
-                          <Controls.Grid item xs={5}>
-                            <Controls.Typography variant="h6" gutterBottom>  {item.venue} </Controls.Typography>
-
-                          </Controls.Grid>
-
-                        </Controls.Grid>
-                      </Controls.CardContent>
-                    </Controls.Card>
                   ))}
                 </Controls.Grid>
-                <Controls.Modal
-                  open={modalOpen}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Controls.Box sx={styles}>
-                    <Controls.Typography variant='h2' sx={{ marginBottom: '10px' }}>View Event Details</Controls.Typography>
-
-                    <Controls.Typography sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }} >{viewData}</Controls.Typography>
-
-                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
-                      <Controls.FormAddCloseButton
-                        variant="contained"
-                        onClick={() => {
-                          handleClose();
-                        }}
-                        buttonText="Close"
-                      />
-                    </Controls.Typography>
-
-                  </Controls.Box>
-                </Controls.Modal>
 
                 <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
                   <Controls.ReusablePagination

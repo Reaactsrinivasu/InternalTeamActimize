@@ -21,7 +21,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 680,
   bgcolor: theme.palette.customColorOrange.main,
-  borderRadius: 8, // Adjust the value as needed
+  borderRadius: 2, // Adjust the value as needed
   boxShadow: 24,
   p: 4,
 };
@@ -38,18 +38,59 @@ const ProjectListModalFormData = ({ show, closeModal, data }) => {
         >
           <Controls.Grid sx={style}>
             <Controls.Grid>
+              <Controls.Grid container sx={{margin:'15px 0px'}}>
+                <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                  <Controls.Grid xs={5} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h5'>Project Name</Controls.Typography>
+                    <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={7} >
+                    <Controls.Typography variant='h5' sx={{ marginLeft: '20px' }}>{data.project_name}</Controls.Typography>
+                  </Controls.Grid>
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                  <Controls.Grid xs={5} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h5'>Status</Controls.Typography>
+                    <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={7} >
+                    <Controls.Typography variant='h5' sx={{ marginLeft: '20px' }}>{data.status}</Controls.Typography>
+                  </Controls.Grid>
+
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                  <Controls.Grid xs={5} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h5'>Start Date</Controls.Typography>
+                    <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={7} >
+                    <Controls.Typography variant='h5' sx={{ marginLeft: '20px' }}>{data.start_date}</Controls.Typography>
+                  </Controls.Grid>
+
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                  <Controls.Grid xs={5} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h5'>End Date</Controls.Typography>
+                    <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={7} >
+                    <Controls.Typography variant='h5' sx={{ marginLeft: '20px' }}>{data.end_date}</Controls.Typography>
+                  </Controls.Grid>
+
+                </Controls.Grid>
+              </Controls.Grid>
               <Controls.Grid>
-                <Controls.Typography variant='h2' sx={{ textAlign: 'center', marginBottom:'20px' }}> Members</Controls.Typography>
+                <Controls.Typography variant='h2' sx={{ textAlign: 'center', marginBottom: '20px' }}> Team</Controls.Typography>
               </Controls.Grid>
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 550 }} aria-label="simple table">
-                  <TableHead>
+                  <TableHead sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarytablehead.backgroundColor,}}>
                     <TableRow>
-                      <TableCell align="center">SNO</TableCell>
-                      <TableCell align="center">Name</TableCell>
-                      <TableCell align="center">UserName</TableCell>
-                      <TableCell align="center">Email</TableCell>
-                      <TableCell align="center">Designation</TableCell>
+                      <TableCell align="center" sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color}}>SNO</TableCell>
+                      <TableCell align="center" sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color}}>Name</TableCell>
+                      <TableCell align="center" sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color}}>UserName</TableCell>
+                      <TableCell align="center" sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color}}>Email</TableCell>
+                      <TableCell align="center" sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color}}>Designation</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -72,14 +113,14 @@ const ProjectListModalFormData = ({ show, closeModal, data }) => {
               </TableContainer>
 
             </Controls.Grid>
-            <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop:'20px' }}>
-            <Controls.FormAddCloseButton
-                    variant="contained"
-                    onClick={() => {
-                      closeModal();
-                    }}
-                    buttonText="Close"
-                  />
+            <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
+              <Controls.FormAddCloseButton
+                variant="contained"
+                onClick={() => {
+                  closeModal();
+                }}
+                buttonText="Close"
+              />
             </Controls.Typography>
           </Controls.Grid>
         </Modal>

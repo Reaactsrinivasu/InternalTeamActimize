@@ -17,7 +17,6 @@ const HolidaysSlider = (props) => {
             setHolidays(dashboard_holidays);
         }
     }, [dashboardDetails]);
-    console.log('dashboard details --->', dashboardDetails)
 
     const holiday = [{ date: '17-04-2024', title: 'Sri Rama Navami' }, { date: '03-04-2024', title: 'Holy' }, { date: '03-04-2024', title: 'Holy' }, { date: '03-04-2024', title: 'Holy' },, { date: '03-04-2024', title: 'Holy' }, { date: '03-04-2024', title: 'Holy' }]
     return (

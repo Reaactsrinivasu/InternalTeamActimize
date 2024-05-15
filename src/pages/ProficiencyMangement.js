@@ -11,6 +11,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
 import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
+import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const columns = [
   { id: "id", label: "S.No" },
@@ -54,7 +55,7 @@ const ProficiencyMangement = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 500);
   })
 
   const handlePageChange = (event, page) => {
@@ -123,7 +124,9 @@ const ProficiencyMangement = () => {
           { !changeData ? (
            
              <>
-             <NoDataFound />
+             <Controls.Grid container sx={{justifyContent:'center'}}>
+             <PleasEnterDataImgComponent text='Technology' />
+             </Controls.Grid>
              </>
           ) : (
             <>

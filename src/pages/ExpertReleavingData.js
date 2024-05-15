@@ -17,6 +17,7 @@ import { loadAllUsersStart } from '../redux/actions/allUsersActions';
 import Controls from "../components/Controls";
 import { initialValues, generateValidationSchema, } from "../components/Validations";
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const columns = [
   { id: "id", label: "S.No" },
@@ -28,6 +29,7 @@ const columns = [
 const ExpertReleavingData = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [initialFormValue, setInitialFormValue] = useState(null);
   const handleOpen = () => { setOpen(true); }
@@ -98,7 +100,13 @@ const ExpertReleavingData = () => {
   useEffect(() => {
     dispatch(loadAllUsersStart());
   }, [])
-  
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  })
+
   const memoizedTable = useMemo(() => (
     <Suspense fallback={<div>{''}</div>}>
       <ResuableTable
@@ -258,8 +266,8 @@ const ExpertReleavingData = () => {
                       error={formik.touched.exit_type && Boolean(formik.errors.exit_type)}
                       helperText={formik.touched.exit_type && formik.errors.exit_type ? (<span style={{ color: 'red' }}>{formik.errors.exit_type}</span>) : ('')}
                     />
-                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop:'20px' }}>
-                   
+                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
+
 
                       <Controls.FormAddCloseButton
                         variant="contained"
@@ -283,27 +291,34 @@ const ExpertReleavingData = () => {
             </form>
           </Controls.Modal>
         </Controls.Box>
-        {expertReleavingData?.length > 0 ? (
-
-
-          <>
-            <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
-              {expertReleavingData?.length >= 0 && expertReleavingData
-                ? (memoizedTable)
-                : null}
-            </Controls.Paper>
-
-            <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-              <Controls.ReusablePagination
-                onChange={handlePageChange}
-                count={totalPages} color="success" />
-            </Controls.Grid>
-          </>
+        {loading ? (
+          <LoadingComponent />
         ) : (
           <>
-            <NoDataFound />
+            {expertReleavingData?.length > 0 ? (
+
+
+              <>
+                <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
+                  {expertReleavingData?.length >= 0 && expertReleavingData
+                    ? (memoizedTable)
+                    : null}
+                </Controls.Paper>
+
+                <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
+                  <Controls.ReusablePagination
+                    onChange={handlePageChange}
+                    count={totalPages} color="success" />
+                </Controls.Grid>
+              </>
+            ) : (
+              <>
+                <NoDataFound />
+              </>
+            )}
           </>
         )}
+
       </>
     </ThemeProvider>
   )

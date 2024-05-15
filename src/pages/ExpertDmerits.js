@@ -10,6 +10,7 @@ import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const columns = [
   { id: "id", label: "S.No" },
@@ -37,6 +38,7 @@ const ExpertDmerits = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = useState(false);
+  const [ loading , setLoading] = useState(true);
   const [initialFormValue, setInitialFormValue] = useState(null);
   const handleOpen = () => { setOpen(true); }
   const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
@@ -79,6 +81,12 @@ const ExpertDmerits = () => {
   useEffect(() => {
     dispatch(loadDmeritsDetailsStart());
   }, [])
+
+  useEffect (() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 900);
+  })
   let id = userInfo.id;
   useEffect(() => {
     if (id) {
@@ -299,26 +307,33 @@ const ExpertDmerits = () => {
             </form>
           </Controls.Modal>
         </Controls.Box>
-        {expertmeritdata?.length > 0 ? (
-
-
-          <>
-            <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
-              {expertmeritdata?.length >= 0 && expertmeritdata
-                ? (memoizedTable)
-                : null}
-            </Controls.Paper>
-
-
-            <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-              <Controls.ReusablePagination
-                onChange={handlePageChange}
-                count={totalPages} color="success" />
-            </Controls.Grid>
-          </>
+        {loading ? (
+          <LoadingComponent />
         ) : (
           <>
-            <NoDataFound />
+          {expertmeritdata?.length > 0 ? (
+  
+  
+            <>
+              <Controls.Paper sx={{ mt: 2, borderRadius: "10px" }}>
+                {expertmeritdata?.length >= 0 && expertmeritdata
+                  ? (memoizedTable)
+                  : null}
+              </Controls.Paper>
+  
+  
+              <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
+                <Controls.ReusablePagination
+                  onChange={handlePageChange}
+                  count={totalPages} color="success" />
+              </Controls.Grid>
+            </>
+          ) : (
+            <>
+              <NoDataFound />
+            </>
+          )}
+
           </>
         )}
       </>

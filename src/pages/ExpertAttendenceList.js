@@ -15,6 +15,7 @@ import theme from "../Theme";
 import { createAttendenceListDetailsStart, loadAttendenceListDetailsStart, updateAttendenceListDetailsStart } from '../redux/actions/expertAttendencelistActions';
 import { loadAllUsersStart } from '../redux/actions/allUsersActions';
 import Controls from "../components/Controls";
+import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const style = {
   p: 4,
   top: '45%',
@@ -261,11 +262,19 @@ const ExpertAttendenceList = () => {
                       ))}
                     </Controls.TableBody>
                   </Controls.Table>
-                  <Controls.Box sx={{ textAlign: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
+                  {/* <Controls.Box sx={{ textAlign: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
                     <Controls.Button type="submit" onClick={handleAttendanceUpdate} variant="contained" sx={{margin:'10px 0px', backgroundColor:theme.palette.error.main, paddingTop:'8px', "&:hover":{backgroundColor:theme.palette.error.main}}}>
                       update
                     </Controls.Button>
-                  </Controls.Box>
+                  </Controls.Box> */}
+                    <Controls.Grid container sx={{justifyContent:'center', margin:'10px 0px'}}>
+                        <Controls.FormAddCloseButton
+                        buttonType="submit"
+                        variant="contained"
+                        onClick={handleAttendanceUpdate}
+                        buttonText='Update'
+                      />
+                      </Controls.Grid>
                 </Controls.TableContainer>
               ) : (
                 <Controls.Grid container spacing={2}>
@@ -281,6 +290,7 @@ const ExpertAttendenceList = () => {
                               <StyledTableCell sx={{ color: theme.components.tables.styleOverrides.containedPrimarytablehead.color }} align="center">Holiday</StyledTableCell>
                             </Controls.TableRow>
                           </Controls.TableHead>
+                          
                           {selectedDate && (
                             <Controls.TableBody>
                               {Array.isArray(allusersnamedata) && allusersnamedata.length > 0 ? (
@@ -318,12 +328,12 @@ const ExpertAttendenceList = () => {
                             </Controls.TableBody>
                           )}
                         </Controls.Table>
-                        <Controls.Box sx={{ textAlign: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
-                          <Controls.Button type="button" variant="contained" disabled={
-                            !formChange}
+                        {/* <Controls.Box sx={{ textAlign: 'center',  backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
+                          <Controls.Button type="button" variant="contained" 
                             sx={{ margin:'10px 0px', paddingTop:'10px',
                             
                               bgcolor: theme.palette.error.main,
+                              display: formChange ? 'block' : 'none' ,
                               '&:hover': {
                                 bgcolor: theme.palette.error.main,
                               },
@@ -331,7 +341,17 @@ const ExpertAttendenceList = () => {
                             onClick={handleSubmit}>
                             Submit
                           </Controls.Button>
-                        </Controls.Box>
+                        </Controls.Box> */}
+                        <Controls.Grid container sx={{justifyContent:'center' }}>
+                          <Controls.Grid sx={{display: formChange ? 'block' : 'none', margin:'10px 0px',}}>
+                        <Controls.FormAddCloseButton
+                        buttonType="submit"
+                        variant="contained"
+                        onClick={handleSubmit}
+                        buttonText='submit'
+                      />
+                      </Controls.Grid>
+                      </Controls.Grid>
 
                       </Controls.TableContainer>
                     </form>
@@ -366,6 +386,12 @@ const ExpertAttendenceList = () => {
               </LocalizationProvider>
             </Controls.Grid>
           </Controls.Grid>
+          {!formChange ? (
+            <Controls.Grid container sx={{justifyContent:'center', marginTop:'10px'}}> 
+            <PleasEnterDataImgComponent text='Date' />
+
+            </Controls.Grid>
+          ) : ('')}
         {/* </Controls.Paper> */}
       </>
     </ThemeProvider>

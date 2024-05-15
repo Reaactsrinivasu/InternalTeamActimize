@@ -13,9 +13,11 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from "@mui/material/Grid";
 import theme from "../Theme";
+import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const PayslipMangement = (data) => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
+  const [formChange , setFormChange] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => { setOpen(true); }
   const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
@@ -68,6 +70,7 @@ const PayslipMangement = (data) => {
                     onSubmit={(e) => {
                       e.preventDefault();
                       formik.handleSubmit(e);
+                      setFormChange(true);
                     }}
                     autoComplete="off"
                   >
@@ -302,6 +305,11 @@ const PayslipMangement = (data) => {
               </Controls.Grid>
             )}
           </Controls.Grid>
+          {!formChange ? (
+            <Controls.Grid container sx={{justifyContent:'center'}}>
+            <PleasEnterDataImgComponent text='Salary'  />
+              </Controls.Grid>
+          ) : ('')}
         </Controls.Box>
       </>
     </ThemeProvider>

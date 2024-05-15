@@ -75,7 +75,7 @@ const Leaves = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 900);
   })
 
 
@@ -281,7 +281,7 @@ const Leaves = () => {
                       error={formik.touched.year && Boolean(formik.errors.year)}
                       helperText={formik.touched.year && formik.errors.year ? (<span style={{ color: 'red' }}>{formik.errors.year}</span>) : ('')}
                     />
-                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop:'10px' }}>
 
                       <Controls.FormAddCloseButton
                         variant="contained"
