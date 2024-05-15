@@ -6,6 +6,7 @@ import Controls from "../components/Controls";
 import theme from '../Theme';
 const ColumnChart = () => {
     const dashboardDetails = useSelector((state) => state.dashboardData.data);
+    const totalWorkingHours =  dashboardDetails?.total_working_hours
     const [data, updateData] = useState({
         series: [
             {
@@ -168,6 +169,9 @@ const ColumnChart = () => {
                             height={300}
                             width="100%" 
                         />
+                         <Controls.Grid >
+                            <Controls.Typography variant='h6' sx={{textAlign:'center', paddingBottom:'10px'}}>Total Working Hours : {totalWorkingHours}</Controls.Typography>
+                        </Controls.Grid>
                     </Controls.Paper>
                 </Controls.Grid>
             </Controls.Grid>
