@@ -125,7 +125,7 @@ const ProficiencyMangement = () => {
            
              <>
              <Controls.Grid container sx={{justifyContent:'center'}}>
-             <PleasEnterDataImgComponent />
+             <PleasEnterDataImgComponent text='Technology' />
              </Controls.Grid>
              </>
           ) : (

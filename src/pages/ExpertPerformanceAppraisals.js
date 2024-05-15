@@ -108,7 +108,7 @@ const ExpertPerformanceAppraisals = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 900);
   })
 
   const allusersnamedata = useSelector((state) => state.alluserdata.data || []);

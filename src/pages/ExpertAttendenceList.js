@@ -388,7 +388,7 @@ const ExpertAttendenceList = () => {
           </Controls.Grid>
           {!formChange ? (
             <Controls.Grid container sx={{justifyContent:'center', marginTop:'10px'}}> 
-            <PleasEnterDataImgComponent />
+            <PleasEnterDataImgComponent text='Date' />
 
             </Controls.Grid>
           ) : ('')}

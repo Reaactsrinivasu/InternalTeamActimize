@@ -190,7 +190,7 @@ const color = theme.palette.error.main
          
             <>
             <Controls.Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', m: 2 }}>
-              <PleasEnterDataImgComponent />
+              <PleasEnterDataImgComponent text='Date' />
             </Controls.Grid>
           </>
         ) : (

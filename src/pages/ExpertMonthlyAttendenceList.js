@@ -199,7 +199,7 @@ const ExpertMonthlyAttendenceList = () => {
           <>
 
             <Controls.Grid container sx={{ marginTop: '30px', justifyContent:'center' }}>
-             <PleasEnterDataImgComponent />
+             <PleasEnterDataImgComponent  text='Date'/>
             </Controls.Grid>
           </>
         )}

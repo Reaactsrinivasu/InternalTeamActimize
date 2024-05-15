@@ -307,7 +307,7 @@ const PayslipMangement = (data) => {
           </Controls.Grid>
           {!formChange ? (
             <Controls.Grid container sx={{justifyContent:'center'}}>
-            <PleasEnterDataImgComponent  />
+            <PleasEnterDataImgComponent text='Salary'  />
               </Controls.Grid>
           ) : ('')}
         </Controls.Box>

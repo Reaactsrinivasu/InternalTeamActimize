@@ -81,6 +81,8 @@ const WorkExperience = () => {
     validationSchema: validationSchema,
   });
   const workExperienceData = useSelector((state) => state.workexpdata?.data?.work_experiences || []);
+  const totalRecords = useSelector((state) => state.workexpdata?.data?.total_count || []);
+  console.log('this is data ---->', workExperienceData);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -101,7 +103,7 @@ const WorkExperience = () => {
     setTimeout(() => {
       dispatch(loadWorkExperienceDetailsStart());
       setLoading(false);
-    }, 300)
+    }, 1000)
   }, [])
 
   let id = userInfo.id;
@@ -291,7 +293,7 @@ const WorkExperience = () => {
               </Controls.Paper>
 
               <Controls.Grid container sx={{ marginTop: '30px', justifyContent: 'center', }}>
-                <Controls.ReusablePagination count={Math.ceil(workExperienceData.length / itemsPerPage)} page={currentPage} onChange={handlePageChange} />
+                <Controls.ReusablePagination count={Math.ceil(totalRecords / itemsPerPage)} page={currentPage} onChange={handlePageChange} />
               </Controls.Grid>
             </>
           ) : (

@@ -114,10 +114,9 @@ const PersonalDetails = () => {
       setDecodedProfilePic(base64String);
       setCroppedImage(base64String);
       setBase64String(base64String);
-      // if( editMode === true){
-      //   // window.location.reload();
-      //   this.forceUpdate();
-      // }
+      if( editMode === true){
+        window.location.reload();
+      }
       this.forceUpdate();
     }
   };

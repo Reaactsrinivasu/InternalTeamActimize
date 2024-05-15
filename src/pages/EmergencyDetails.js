@@ -86,7 +86,7 @@ const EmergencyDetails = () => {
     setTimeout(() => {
       dispatch(loadEmergencyDetailsStart());
       setLoading(false);
-    }, 500)
+    }, 1000)
   }, [])
 
   let id = userInfo.id;
@@ -243,6 +243,7 @@ const EmergencyDetails = () => {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
+                      marginTop:'10px'
                     }}
                   >
                     <Controls.FormAddCloseButton

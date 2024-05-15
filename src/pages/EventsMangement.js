@@ -123,7 +123,7 @@ const EventsMangement = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 500);
+    }, 900);
   })
   const handleDelete = (id) => {
     if (window.confirm('confirm to delete')) {

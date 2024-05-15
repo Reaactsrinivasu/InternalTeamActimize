@@ -33,7 +33,7 @@ const DashboardMangement = () => {
     useEffect(() => {
       setTimeout(() => {
         setLoading(false)
-      }, 1000)
+      }, 1500)
     })
 
 

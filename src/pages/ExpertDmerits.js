@@ -85,7 +85,7 @@ const ExpertDmerits = () => {
   useEffect (() => {
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 900);
   })
   let id = userInfo.id;
   useEffect(() => {

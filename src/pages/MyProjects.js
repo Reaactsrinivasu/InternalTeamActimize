@@ -29,7 +29,7 @@ const MyProjects = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 1000);
  
     return () => clearTimeout(timer);
   }, []);
@@ -194,10 +194,10 @@ const MyProjects = () => {
                               <>
                                   <Controls.Grid xs={6} sx={{ display:'flex'}}>
                                     <Grid xs={2}>
-                                    <Typography>{index + 1}</Typography>
+                                    <Typography variant='h5'>{index + 1}</Typography>
                                     </Grid>
                                     <Grid xs={10}>
-                                    <Typography sx={{}}>{item.name}</Typography>
+                                    <Typography variant='h5'>{item.name}</Typography>
                                     </Grid>
                                   </Controls.Grid>
                               </>
