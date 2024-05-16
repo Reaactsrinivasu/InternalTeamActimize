@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { useFormik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
-import Pagination from '@mui/material/Pagination';
 import theme from "../Theme";
 import {
   createStatusDetailsStart,
@@ -13,7 +12,6 @@ import {
 import { initialValues, generateValidationSchema } from "../components/Validations";
 import Controls from "../components/Controls";
 import NoDataFound from "../components/NoDataComponent";
-import ProjectListModalFormData from "../components/ProjectsListModalFormData";
 import DailyStatusModalFormData from "../components/DailyStatusModalFormData";
 import LoadingComponent from "../components/LoadingComponent";
 

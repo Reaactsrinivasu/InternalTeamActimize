@@ -30,7 +30,7 @@ const ExpertWiseLeaveBank = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 900);
   })
   const message = expertfamilywise?.data?.data?.message ? false : true
   return (

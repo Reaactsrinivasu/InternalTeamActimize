@@ -31,7 +31,7 @@ const ExpertWiseProjects = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 200);
+    }, 900);
   })
 
   const [currentPage, setCurrentPage] = useState(1);

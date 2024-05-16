@@ -150,6 +150,7 @@ const Leaves = () => {
   useEffect(() => {
     dispatch(loadAllUsersStart());
   }, [])
+  
   const memoizedTable = useMemo(() => (
     <Suspense fallback={<div>{''}</div>}>
       <ResuableTable

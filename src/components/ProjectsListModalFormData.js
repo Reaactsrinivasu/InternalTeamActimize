@@ -112,6 +112,16 @@ const ProjectListModalFormData = ({ show, closeModal, data }) => {
                 </Table>
               </TableContainer>
 
+               <Controls.Grid>
+               <Controls.Grid>
+                <Controls.Typography variant='h2' sx={{ textAlign: 'center', marginTop: '20px' }}> Description</Controls.Typography>
+              </Controls.Grid>
+              <Controls.Grid>
+                <Controls.Typography variant='subtitle1' sx={{textAlign:'center'}}>{data.description}</Controls.Typography>
+              </Controls.Grid>
+                </Controls.Grid>     
+
+
             </Controls.Grid>
             <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
               <Controls.FormAddCloseButton

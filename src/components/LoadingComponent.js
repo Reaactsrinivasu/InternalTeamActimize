@@ -12,7 +12,7 @@ const override = {
 const LoadingComponent = () => {
     return (
         <>
-            <Controls.Grid container sx={{ justifyContent: 'center', marginTop: '15%' }}>
+            <Controls.Grid container sx={{ justifyContent: 'center', marginTop: '17%' }}>
                 <Controls.Grid>
                     <PulseLoader
                         color={theme.palette.error.main}

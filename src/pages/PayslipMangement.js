@@ -33,6 +33,9 @@ const PayslipMangement = (data) => {
       const result = await createPaySlipDetailsApi(values);
       setStoredResult(result); // Update storedResult state with the fetched result
       dispatch(createPayslipDetailsStart(values));
+      if (formik.isValid) {
+        setFormChange(true);
+      }
     } catch (error) {
       console.error('Error occurred:', error);
     }
@@ -70,7 +73,6 @@ const PayslipMangement = (data) => {
                     onSubmit={(e) => {
                       e.preventDefault();
                       formik.handleSubmit(e);
-                      setFormChange(true);
                     }}
                     autoComplete="off"
                   >

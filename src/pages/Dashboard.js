@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageSlider from './ImageSlider';
 import HolidaysSlider from './HolidaysSlider';
 import ColumnChart from '../dashboardUtils/ColumnChart';
@@ -8,15 +8,27 @@ import { loadDashboardDetailsStart } from '../redux/actions/dashboardDetailsActi
 import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
+import LoadingComponent from '../components/LoadingComponent';
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
 
     dispatch(loadDashboardDetailsStart());
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1200);
+  })
+
   return (
     <ThemeProvider theme={theme}>
-    <>
+      {loading ? (
+        <LoadingComponent />
+      ) : (
+        <>
     <Controls.Grid spacing={2} container rowSpacing={2} columnSpacing={3} justifyContent="center">
   <Controls.Grid item xs={12} sm={12} md={8} lg={12} sx={{ boxShadow: '100px rgba(0, 0, 0, 0.1)' }}>
     <ColumnChart />
@@ -42,6 +54,8 @@ const Dashboard = () => {
 
 
     </>
+      )}
+    
     </ThemeProvider>
   );
 };

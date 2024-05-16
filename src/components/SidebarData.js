@@ -22,19 +22,19 @@ export const  SidebarData = [
         iconOpened: <ExpandMoreIcon />,
         items: [
             {
-                title: "FamilyDetails",
+                title: "Family Details",
                 path: "/emp/profiles/familydetails",
                 // icon: <Diversity3Icon />
  
             },
             {
-                title: "EmergencyDetails",
+                title: "Emergency Details",
                 path: "/emp/profiles/emergencydetails",
                 // icon: <ContactEmergencyIcon />
  
             },
             {
-                title: "UserProfile",
+                title: "User Profile",
                 path: "/emp/profiles/userprofile",
                 // icon: <AccountCircleIcon />
  
@@ -48,7 +48,7 @@ export const  SidebarData = [
         icon: <WorkHistoryOutlinedIcon />,
         items: [
             {
-                title: "WorkExpereince",
+                title: "Work Expereince",
                 path: "/emp/workandskills/workexperience",
                 // icon: <HomeRepairServiceIcon />
             },
@@ -65,13 +65,13 @@ export const  SidebarData = [
         icon: <IntegrationInstructionsOutlinedIcon />,
         items: [
             {
-                title: "DailyStatus",
+                title: "Daily Status",
                 path: "/emp/tasks/dailystatus",
                 // icon: <PostAddIcon />
                 
             },
             {
-                title: "HoursEntry",
+                title: "Hours Entry",
                 path: "/emp/tasks/hoursentry",
                 // icon: <QueryBuilderIcon />
             },
@@ -79,7 +79,7 @@ export const  SidebarData = [
     },
  
     {
-        title: "MyProjects",
+        title: "My Projects",
         path: "/emp/myprojects",
         icon: <FactCheckOutlinedIcon />
     },
@@ -89,7 +89,7 @@ export const  SidebarData = [
         icon: <RestoreOutlinedIcon />
     },
     {
-        title: "BankDetails",
+        title: "Bank Details",
         icon: <AccountBalanceOutlinedIcon />,
         path: "/emp/bankdetails",
     },

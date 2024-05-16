@@ -1,7 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { createProfileStart, createUserStart } from '../redux/actions/createUserActions';
@@ -36,6 +35,7 @@ const PersonalDetails = () => {
     "personal_email",
     "permanent_address",
     "present_address",
+    "bio",
     "profile_pic",
   ];
   const validationSchema = generateValidationSchema(formFields);
@@ -353,7 +353,7 @@ const PersonalDetails = () => {
                           sx={{ width: 190, height: 190, overflow: 'hidden', marginTop: '28px', boxShadow: '0 0 0 5px #fff' }}
                         />
                         <Controls.Box sx={{ position: 'relative', right: '-140px', bottom: '55px', lineHeight: 1, cursor: 'pointer', justifyContent: 'center' }}>
-                          <Controls.Avatar sx={{ width: 50, height: 50, backgroundColor: '#e0e0e0' }}>
+                          <Controls.Avatar   sx={{ width: 50, height: 50, backgroundColor: '#e0e0e0',  }}>
                             <label htmlFor="upload-button">
                               <Controls.LinkedCameraIcon sx={{ display: 'block', width: 30, height: 30, color: 'black' }} />
                             </label>
@@ -538,7 +538,7 @@ const PersonalDetails = () => {
                           type='text'
                           size='large'
                           multiline
-                          rows={2}
+                          rows={1}
                           // maxRows={1}
                           variant='outlined'
                           name='permanent_address'
@@ -561,7 +561,7 @@ const PersonalDetails = () => {
                         <Controls.TextField
                           fullWidth
                           multiline
-                          rows={2}
+                          rows={1}
                           size='large'
                           type='text'
                           variant='outlined'
@@ -577,6 +577,30 @@ const PersonalDetails = () => {
                           value={formik.values.present_address}
                           helperText={formik.touched.present_address && formik.errors.present_address ? (<span style={{ color: 'red' }}>{formik.errors.present_address}</span>) : ('')}
                           error={formik.touched.present_address && Boolean(formik.errors.present_address)}
+                        />
+                      </Controls.Box>
+                    </Controls.Grid>
+                    <Controls.Grid item xs={12} sm={12} md={12}>
+                      <Controls.Box p={1}>
+                        <Controls.TextField
+                          fullWidth
+                          multiline
+                          rows={1}
+                          size='small'
+                          type='text'
+                          variant='outlined'
+                          name='bio'
+                          label='Bio'
+                          onBlur={formik.handleBlur}
+                          // onChange={formik.handleChange}
+                          onChange={(event) => {
+                            formik.handleChange(event);
+                            setFormChanged(true);
+                          }}
+                          placeholder='Please Enter Your Bio'
+                          value={formik.values.bio}
+                          helperText={formik.touched.bio && formik.errors.bio ? (<span style={{ color: 'red' }}>{formik.errors.bio}</span>) : ('')}
+                          error={formik.touched.bio && Boolean(formik.errors.bio)}
                         />
                       </Controls.Box>
                     </Controls.Grid>

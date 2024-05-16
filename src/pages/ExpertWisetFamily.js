@@ -31,7 +31,7 @@ const ExpertWisetFamily = () => {
   useState(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200)
+    }, 900)
   })
   const [open, setOpen] = useState(false);
   const [indexValue, setIndexValue] = useState(null);
