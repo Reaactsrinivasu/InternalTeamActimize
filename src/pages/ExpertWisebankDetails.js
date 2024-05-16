@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { loadBankWiseDetailsStart } from '../redux/actions/expertPersonalWiseActions';
@@ -16,14 +16,21 @@ import PersonOffIcon from '@mui/icons-material/PersonOff';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import NoDataFound from '../components/NoDataComponent';
+import LoadingComponent from '../components/LoadingComponent';
 const ExpertWisebankDetails = () => {
   const { id } = useParams(); // Get the expert ID from URL params
   const dispatch = useDispatch();
+  const [loading , setLoading] = useState(true);
   const expertfamilywise = useSelector((state) => state.expertbankWiseData?.data?.data || []);
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(loadBankWiseDetailsStart(id));
   }, [dispatch, id]);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 900);
+  })
   const message = expertfamilywise?.message ? false : true
   return (
     <ThemeProvider theme={theme}>
@@ -41,7 +48,13 @@ const ExpertWisebankDetails = () => {
           <Controls.Grid container sx={{ display: 'flex', width: '100%', paddingLeft: '0%' }}>
             <Controls.Grid container item md={12} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.palette.customColorOrange.main, padding: '35px 0px', borderRadius: '10px', }} >
               <Controls.Grid item md={8} sx={{ marginRight: '20px' }}>
-                <NoDataFound />
+                {loading ? (
+                  <LoadingComponent />
+                ) : (
+                  <>
+                  <NoDataFound />
+                  </>
+                )}
               </Controls.Grid>
              
               <Controls.Grid item md={3}>
@@ -97,69 +110,75 @@ const ExpertWisebankDetails = () => {
           <Controls.Grid container sx={{ display: 'flex', width: '100%', paddingLeft: '0%' }}>
             <Controls.Grid container item md={12} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.palette.customColorOrange.main, padding: '35px 0px', borderRadius: '10px', }} >
               <Controls.Grid item md={8} sx={{ marginRight: '20px' }}>
-                <Controls.Paper sx={{
-                  width: '100%', height: '100%', boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', backgroundColor: theme.palette.success.main,
-                  borderRadius: '5px', p: 5,
-                }}>
-                  {expertfamilywise.map((item) => (
-                    <>
-                      <Controls.Grid container item xs={12} md={8} sx={{ margin: 'auto' }}>
-                        <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
-                          <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
-                            <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                              <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Name Of The Bank</Controls.Typography>
-                              <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-
+                {loading ? (
+                  <LoadingComponent />
+                ) : (
+                  <>
+                  <Controls.Paper sx={{
+                    width: '100%', height: '100%', boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', backgroundColor: theme.palette.success.main,
+                    borderRadius: '5px', p: 5,
+                  }}>
+                    {expertfamilywise.map((item) => (
+                      <>
+                        <Controls.Grid container item xs={12} md={8} sx={{ margin: 'auto' }}>
+                          <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
+                            <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
+                              <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Name Of The Bank</Controls.Typography>
+                                <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+  
+                              </Controls.Grid>
+                              <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
+                                <Controls.Typography variant='subtitle2'> {item.bank_name} </Controls.Typography>
+  
+                              </Controls.Grid>
                             </Controls.Grid>
-                            <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                              <Controls.Typography variant='subtitle2'> {item.bank_name} </Controls.Typography>
-
+                          </Controls.Grid>
+                          <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
+                            <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
+                              <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Account Number </Controls.Typography>
+                                <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+  
+                              </Controls.Grid>
+                              <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
+                                <Controls.Typography variant='subtitle2'> {item.account_number} </Controls.Typography>
+  
+                              </Controls.Grid>
+                            </Controls.Grid>
+                          </Controls.Grid>
+                          <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
+                            <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
+                              <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>IFSC Code </Controls.Typography>
+                                <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+  
+                              </Controls.Grid>
+                              <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
+                                <Controls.Typography variant='subtitle2'>  {item.ifsc_code} </Controls.Typography>
+  
+                              </Controls.Grid>
+                            </Controls.Grid>
+                          </Controls.Grid>
+                          <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
+                            <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
+                              <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
+                                <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Branch Name </Controls.Typography>
+                                <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+  
+                              </Controls.Grid>
+                              <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
+                                <Controls.Typography variant='subtitle2'> {item.branch_name}</Controls.Typography>
+  
+                              </Controls.Grid>
                             </Controls.Grid>
                           </Controls.Grid>
                         </Controls.Grid>
-                        <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
-                          <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
-                            <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                              <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Account Number </Controls.Typography>
-                              <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-
-                            </Controls.Grid>
-                            <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                              <Controls.Typography variant='subtitle2'> {item.account_number} </Controls.Typography>
-
-                            </Controls.Grid>
-                          </Controls.Grid>
-                        </Controls.Grid>
-                        <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
-                          <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
-                            <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                              <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>IFSC Code </Controls.Typography>
-                              <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-
-                            </Controls.Grid>
-                            <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                              <Controls.Typography variant='subtitle2'>  {item.ifsc_code} </Controls.Typography>
-
-                            </Controls.Grid>
-                          </Controls.Grid>
-                        </Controls.Grid>
-                        <Controls.Grid container item sx={{ justifyContent: 'center', padding: '10px 0px', }}>
-                          <Controls.Grid item xs={12} sx={{ display: 'flex', }}>
-                            <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                              <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Branch Name </Controls.Typography>
-                              <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-
-                            </Controls.Grid>
-                            <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                              <Controls.Typography variant='subtitle2'> {item.branch_name}</Controls.Typography>
-
-                            </Controls.Grid>
-                          </Controls.Grid>
-                        </Controls.Grid>
-                      </Controls.Grid>
-                    </>
-                  ))}
-                </Controls.Paper>
+                      </>
+                    ))}
+                  </Controls.Paper>
+                  </>
+                )}
               </Controls.Grid>
               <Controls.Grid item md={3}>
                 <Controls.Grid container  sx={{ backgroundColor: theme.components.tables.styleOverrides.containedPrimarysidebar.containedPrimarysidebarheader.backgroundColor, boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', padding: '20px 0px', display: 'block', cursor: 'pointer', borderRadius: '10px' }} >

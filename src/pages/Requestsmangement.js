@@ -39,144 +39,167 @@ const Requestsmangement = () => {
           </Controls.ReusablePaper>
         </Controls.Box>
 
-        <Controls.Grid container sx={{ display: 'flex', width: '100%', paddingLeft: '0%' }}>
-          <Controls.Grid container item md={12} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor, padding: '35px 0px', borderRadius: '10px', }} >
+        <Controls.Grid container sx={{ display: 'flex', width: '100%', paddingLeft: '0%', }}>
+          <Controls.Grid container item md={12} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor, padding: '35px 0px', borderRadius: '5px' }} >
             <Controls.Grid item md={8} sx={{ marginRight: '20px' }}>
               {!message ? (
                 <>
-                <NoDataFound />
+                  <NoDataFound />
                 </>
               ) : (
                 <>
-                <Controls.Paper sx={{
-                  width: '100%', height: '100%', boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', backgroundColor: theme.components.tables.styleOverrides.containedPrimarysidebar.containedPrimarysidebarheader.backgroundColor,
-                  borderRadius: '5px', p: 5,
-                }}>
-                  <Controls.Grid container sx={{ display: 'flex' }} >
-                    <Controls.Grid item md={6}>
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>First Name </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                  <Controls.Paper sx={{
+                    width: '100%', height: '100%', boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', backgroundColor: theme.components.tables.styleOverrides.containedPrimarysidebar.containedPrimarysidebarheader.backgroundColor,
+                    borderRadius: '5px', p: 2,
+                  }}>
+                    <Controls.Grid container sx={{ display: 'flex', }} >
+                      <Controls.Grid item md={6}>
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>First Name </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.first_name}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.first_name}</Controls.Typography>
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Last Name </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.last_name}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Date of Birth </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.date_of_birth ? dayjs(expertDetailswise?.data?.data?.date_of_birth).format('DD-MM-YYYY') : ''}</Controls.Typography>
+                          </Controls.Grid>
+                        </Controls.Grid>
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Nationality </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.nationality}</Controls.Typography>
+                          </Controls.Grid>
+                        </Controls.Grid>
+
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Gender </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.gender}</Controls.Typography>
+                          </Controls.Grid>
+                        </Controls.Grid>
+
+                        
+
                       </Controls.Grid>
+                      <Controls.Grid item md={6} >
                       <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Last Name </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Aadhar Card </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.aadhar_card_number}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.last_name}</Controls.Typography>
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Pan Card </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.pan_card_number}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
-                      </Controls.Grid>
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Date of Birth </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Phone Number </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' >{expertDetailswise?.mobile_number}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.date_of_birth ? dayjs(expertDetailswise?.data?.data?.date_of_birth).format('DD-MM-YYYY') : ''}</Controls.Typography>
+
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Company Mail </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden' }} >{expertDetailswise?.company_email}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
-                      </Controls.Grid>
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Nationality </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+
+                        <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                          <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
+                            <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Personal Mail </Controls.Typography>
+                            <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                          </Controls.Grid>
+                          <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                            <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden' }} >{expertDetailswise?.personal_email}</Controls.Typography>
+                          </Controls.Grid>
                         </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.nationality}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Gender </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.gender}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Aadhar Card </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.aadhar_card_number}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                    </Controls.Grid>
-                    <Controls.Grid item md={6} >
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Pan Card </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.pan_card_number}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Phone Number </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' >{expertDetailswise?.mobile_number}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Company Mail </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' sx={{textOverflow: 'ellipsis', overflow:'hidden'}} >{expertDetailswise?.company_email}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Personal Mail </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2'sx={{textOverflow: 'ellipsis', overflow:'hidden'}} >{expertDetailswise?.personal_email}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }}>
+
+                        {/* <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                        <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
                           <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }} >Current Address </Controls.Typography>
                           <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
                         </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' sx={{textOverflow: 'ellipsis', overflow:'hidden'}} >{expertDetailswise?.present_address}</Controls.Typography>
+                        <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                          <Controls.Typography variant='subtitle2' sx={{textOverflow: 'ellipsis', overflow:'hidden',whiteSpace: 'nowrap',}} >{expertDetailswise?.present_address}</Controls.Typography>
                         </Controls.Grid>
-                      </Controls.Grid>
-  
-                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={6} sx={{ display: 'flex' }} >
+                      </Controls.Grid> */}
+
+                        {/* <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                        <Controls.Grid item xs={5} sx={{ display: 'flex' }} >
                           <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Permanent Address </Controls.Typography>
                           <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
                         </Controls.Grid>
-                        <Controls.Grid item xs={6} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden', }} >{expertDetailswise?.permanent_address}</Controls.Typography>
+                        <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
+                          <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden',whiteSpace: 'nowrap', }} >{expertDetailswise?.permanent_address}</Controls.Typography>
+                        </Controls.Grid>
+                      </Controls.Grid> */}
+
+                      </Controls.Grid>
+
+                    </Controls.Grid>
+                    <Controls.Grid xs={12}>
+                      <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                        <Controls.Grid item xs={2.5} sx={{ display: 'flex' }}>
+                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }} >Current Address </Controls.Typography>
+                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                        </Controls.Grid>
+                        <Controls.Grid item xs={9} sx={{ paddingLeft: '30px' }}>
+                          <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', }} >{expertDetailswise?.present_address}</Controls.Typography>
                         </Controls.Grid>
                       </Controls.Grid>
-  
                     </Controls.Grid>
-                  </Controls.Grid>
-                </Controls.Paper>
+                    <Controls.Grid xs={12}>
+                    <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
+                        <Controls.Grid item xs={2.5} sx={{ display: 'flex' }} >
+                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Permanent Address </Controls.Typography>
+                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
+                        </Controls.Grid>
+                        <Controls.Grid item xs={9} sx={{ paddingLeft: '30px' }}>
+                          <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden',whiteSpace: 'nowrap', }} >{expertDetailswise?.permanent_address}</Controls.Typography>
+                        </Controls.Grid>
+                      </Controls.Grid>
+                    </Controls.Grid>
+                  </Controls.Paper>
                 </>
               )}
             </Controls.Grid>

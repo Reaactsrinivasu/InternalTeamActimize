@@ -40,7 +40,6 @@ const ResuableTable = React.memo(({ columns, data, editHandler, deleteHandler, s
   const truncateText = (text, maxLength) => {
     return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   };
-
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -85,7 +84,7 @@ const ResuableTable = React.memo(({ columns, data, editHandler, deleteHandler, s
                                 ? row[column.id] === false
                                   ? "Not Approved"
                                   : "Approved"
-                                : truncateText(row[column.id] || '', 20)
+                                  : truncateText(row[column.id] !== null ? row[column.id] : "0", 20)
                         )}
                       </StyledTableCell>
                     ))}

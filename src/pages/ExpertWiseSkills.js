@@ -32,7 +32,7 @@ const ExpertWiseSkills = () => {
   useEffect( () => {
     setTimeout(() => {
         setLoading(false);
-    }, 200);
+    }, 900);
   })
 
   const message = expertSkillwise?.length > 0 ? true : false

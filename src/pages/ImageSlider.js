@@ -3,6 +3,7 @@ import Carousel3d from "../dashboardUtils/Carousel3d";
 import CarouselCard from "../dashboardUtils/CarouselCard";
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 
 const ImageSlider = () => {
     const [birthdays, setBirthdays] = useState([]);
@@ -27,20 +28,28 @@ const ImageSlider = () => {
             }}
         >
             <div style={{ width: '100%', maxWidth: '60%', height: "23rem", }}>
-                {birthdays?.length > 0 && (<Carousel3d
-                    cards={birthdays?.map((item, index) => (
-                        {
-                            key: index,
-                            content: <CarouselCard
-                                age={item?.date_of_birth}
-                                designation={item?.designation}
-                                title={`${item?.first_name} ${item?.last_name}`}
-                                src={item?.profile_pic}
-                            />
-                        }
-                    ))}
-                    offset={2}
-                />)}
+                {birthdays?.length > 0 ? (
+                    <>
+                    {birthdays?.length > 0 && (<Carousel3d
+                        cards={birthdays?.map((item, index) => (
+                            {
+                                key: index,
+                                content: <CarouselCard
+                                    age={item?.date_of_birth}
+                                    designation={item?.designation}
+                                    title={`${item?.first_name} ${item?.last_name}`}
+                                    src={item?.profile_pic}
+                                />
+                            }
+                        ))}
+                        offset={2}
+                    />)}
+                    </>
+                ) : (
+                    <>
+                    <NoDataFoundDashBoard />
+                    </>
+                )}
             
             </div>
         </div>

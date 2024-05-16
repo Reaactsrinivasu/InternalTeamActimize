@@ -30,7 +30,7 @@ const ExpertWiseExperience = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 200);
+    }, 900);
   })
 
 

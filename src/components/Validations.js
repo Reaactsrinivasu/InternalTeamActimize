@@ -35,11 +35,11 @@ const generateValidationSchema = (fields) => {
         break;
       case "address":
         validationRules.address = Yup.string()
-          .test('is-not-empty', 'Address is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
-          .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
-          .matches(/^[A-Za-z\s]+$/, { message: 'Address must contain only alphabetic characters and spaces' }) // Allow spaces
+          // .test('is-not-empty', 'Address is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
+          // .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
+          // .matches(/^[A-Za-z\s]+$/, { message: 'Address must contain only alphabetic characters and spaces' }) // Allow spaces
           .min(2, 'Address is too short')
-          .max(50, 'Address is too long')
+          .max(150, 'Address is too long')
           .required('Address is required');
         break;
       case "first_name":
@@ -67,12 +67,12 @@ const generateValidationSchema = (fields) => {
             'one-month-experience',
             'Minimum one month experience is required',
             value => {
-                const today = new Date();
-                const enteredDate = new Date(value);
-                const differenceInDays = (today - enteredDate) / (1000 * 60 * 60 * 24);
-                return differenceInDays >= 30;
+              const today = new Date();
+              const enteredDate = new Date(value);
+              const differenceInDays = (today - enteredDate) / (1000 * 60 * 60 * 24);
+              return differenceInDays >= 30;
             }
-        )
+          )
           .required('Joining Date is required');
         break;
       // case "date_of_end":
@@ -82,20 +82,20 @@ const generateValidationSchema = (fields) => {
       //   break;
       case "date_of_end":
         validationRules.date_of_end = Yup
-            .date()
-            .max(new Date(), 'Ending Date cannot be in the future')
-            .required('Ending Date is required')
-            .test(
-                'experience-validation',
-                'Minimum one month experience is required',
-                (value, context) => {
-                    const startDate = new Date(context.parent.date_of_join); 
-                    const endDate = new Date(value);
-                    const differenceInMilliseconds = endDate - startDate;
-                    const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
-                    return differenceInDays >= 30 && endDate <= new Date();
-                }
-            );
+          .date()
+          .max(new Date(), 'Ending Date cannot be in the future')
+          .required('Ending Date is required')
+          .test(
+            'experience-validation',
+            'Minimum one month experience is required',
+            (value, context) => {
+              const startDate = new Date(context.parent.date_of_join);
+              const endDate = new Date(value);
+              const differenceInMilliseconds = endDate - startDate;
+              const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+              return differenceInDays >= 30 && endDate <= new Date();
+            }
+          );
         break;
       case "skill_name":
         validationRules.skill_name = Yup.string()
@@ -130,9 +130,9 @@ const generateValidationSchema = (fields) => {
         break;
       case "description":
         validationRules.description = Yup.string()
-          .test('is-not-empty', 'Description is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
-          .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
-          .matches(/^[A-Za-z\s]+$/, { message: 'Description must contain only alphabetic characters and spaces' }) // Allow spaces
+          // .test('is-not-empty', 'Description is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
+          // .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
+          // .matches(/^[A-Za-z\s]+$/, { message: 'Description must contain only alphabetic characters and spaces' }) // Allow spaces
           .min(2, 'Description is too short')
           .max(200, 'Description is too long')
           .required('Description is required');
@@ -184,10 +184,18 @@ const generateValidationSchema = (fields) => {
           .date()
           .required('Start Date is required');
         break;
+      // case "end_date":
+      //   validationRules.end_date = Yup
+      //     .date()
+      //     .required('End Date is required');
+      //   break;
       case "end_date":
         validationRules.end_date = Yup
           .date()
-          .required('End Date is required');
+          .required('End Date is required')
+          .when('start_date', (startDate, schema) => {
+            return startDate && schema.min(startDate, 'End date must be after start date');
+          });
         break;
       case "type_of_leave":
         validationRules.type_of_leave = Yup.string()
@@ -196,10 +204,25 @@ const generateValidationSchema = (fields) => {
           .required('Type of Leave is required');
 
         break;
+      // case "number_of_leaves":
+      //   validationRules.number_of_leaves = Yup
+      //     .number()
+      //     .required('Number of Leaves is required');
+      //   break;
       case "number_of_leaves":
         validationRules.number_of_leaves = Yup
           .number()
-          .required('Number of Leaves is required');
+          .required('Number of Leaves is required')
+          .test('is-valid-count', 'Number of leaves must be between the days of start and end dates', function(number_of_leaves) {
+            const { start_date, end_date } = this.parent;
+            if (start_date && end_date && number_of_leaves) {
+              const startDate = new Date(start_date);
+              const endDate = new Date(end_date);
+              const differenceInDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+              return number_of_leaves >= 0 && number_of_leaves <= differenceInDays;
+            }
+            return true; // Return true if any of the fields are not filled yet
+          });
         break;
       // Add additional fields as needed
       default:
@@ -315,6 +338,12 @@ const generateValidationSchema = (fields) => {
           .min(10, "Current  Address is Short!")
           .max(300, "Current Address is Long!")
           .required('Current Address is required');
+        break;
+        case "bio":
+          validationRules.bio = Yup.string()
+          .min(10, "Bio is Short!")
+          .max(300, "Bio is Long!")
+          .required('Bio is required');
         break;
       case "project_name":
         validationRules.project_name = Yup.string()
@@ -605,11 +634,18 @@ const generateValidationSchema = (fields) => {
           .max(50, 'Reason is too long')
           .required('Reason is required');
         break;
+      // case "seviority":
+      //   validationRules.seviority = Yup.number()
+      //     .required('Seviority is required')
+      //     .max(9999999999, 'Seviority must be at most 10 digits');
+
+      //   break;
       case "seviority":
         validationRules.seviority = Yup.number()
           .required('Seviority is required')
-          .max(9999999999, 'Seviority must be at most 10 digits');
-
+          .integer('Seviority must be an integer')
+          .min(1, 'Seviority must be at least 1')
+          .max(10, 'Seviority must be at most 10');
         break;
       case "merit_type":
         validationRules.merit_type = Yup.string()
@@ -696,6 +732,7 @@ const initialValues = {
   personal_email: '',
   permanent_address: '',
   present_address: '',
+  bio:'',
   profile_pic: '',
   // expercreation
   name: '',

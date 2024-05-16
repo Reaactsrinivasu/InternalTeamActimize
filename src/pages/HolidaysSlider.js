@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 import theme from '../Theme';
+import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const HolidaysSlider = (props) => {
     const [holidays, setHolidays] = useState([]);
     let dashboardDetails = useSelector((state) => state.dashboardData.data);
@@ -44,7 +45,9 @@ const HolidaysSlider = (props) => {
         // </div>
         <>
             <Grid container sx={{ justifyContent: 'center', height: "23rem",}}>
-                <Grid item xs={10} sx={{ margin: '30px 0px', backgroundColor: theme.palette.success.main, borderRadius: '10px' }}>
+                {dashboardDetails?.holidays?.length > 0 ? (
+                    <>
+                       <Grid item xs={10} sx={{ margin: '30px 0px', backgroundColor: theme.palette.success.main, borderRadius: '10px' }}>
                     <Grid sx={{ marginTop: '20px' }}>
                         <Typography variant='subtitle1' sx={{ textAlign: 'center', display :props.display || 'block'  }}>Upcoming Holidays</Typography>
                     </Grid>
@@ -70,6 +73,11 @@ const HolidaysSlider = (props) => {
 
                     </Grid>
                 </Grid>
+                    </>
+                ) : (
+                    <NoDataFoundDashBoard />
+                )}
+             
             </Grid>
         </>
     );

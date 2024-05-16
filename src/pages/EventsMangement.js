@@ -438,7 +438,7 @@ const EventsMangement = () => {
                           </Controls.Grid>
                           <Controls.Typography variant='h2' sx={{ marginBottom: '10px' }}>View Event Details</Controls.Typography>
 
-                          <Controls.Typography sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }} >{item.view}</Controls.Typography>
+                          <Controls.Typography variant='subtitle1' sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }} >{item.view}</Controls.Typography>
 
                           <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '20px' }}>
                             <Controls.FormAddCloseButton

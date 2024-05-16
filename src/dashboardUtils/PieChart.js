@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { useSelector} from 'react-redux';
 import Controls from "../components/Controls";
+import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const PieChart = () => {
     const dashboard_PieChart = useSelector((state) => state.dashboardData.data);
     const [pieChart, setPieChart] = useState({
@@ -176,9 +177,10 @@ const PieChart = () => {
 
     return (
         <>
-            <Controls.Box sx={{ mt: 3, }}>
+            {/* <Controls.Box sx={{ mt: 3, }}>
                 <ReactApexChart options={pieChart?.options} series={pieChart?.series} type="pie" height={350} width='100%' />
-            </Controls.Box>
+            </Controls.Box> */}
+            <NoDataFoundDashBoard />
         </>
     );
 };
