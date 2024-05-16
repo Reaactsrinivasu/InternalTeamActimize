@@ -343,7 +343,8 @@ const generateValidationSchema = (fields) => {
           validationRules.bio = Yup.string()
           .min(10, "Bio is Short!")
           .max(300, "Bio is Long!")
-          .required('Bio is required');
+          .required('Bio is required')
+          .nullable();
         break;
       case "project_name":
         validationRules.project_name = Yup.string()
