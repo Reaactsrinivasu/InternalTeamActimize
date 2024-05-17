@@ -205,7 +205,7 @@ const MyProjects = () => {
                             </Controls.Grid>
                             <Controls.Grid>
                               <Controls.Typography variant='h2' >Description</Controls.Typography>
-                              <Typography sx={{ wordWrap: 'break-word' }}>{descriptionData}</Typography>
+                              <Typography sx={{ wordWrap: 'break-word' }} variant='h5'>{descriptionData}</Typography>
                             </Controls.Grid>
                             <Controls.Grid sx={{marginTop:'20px'}}>
                              <Controls.FormAddCloseButton

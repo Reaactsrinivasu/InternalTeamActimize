@@ -411,7 +411,7 @@ const EventsMangement = () => {
                                 <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
                               </Controls.Grid>
                               <Controls.Grid xs={9} >
-                                <Controls.Typography variant='h5' sx={{ marginLeft: '40px' }}>{dayjs(item.event_date).format('MM-DD-YYYY')}</Controls.Typography>
+                                <Controls.Typography variant='h5' sx={{ marginLeft: '40px' }}>{dayjs(item.event_date).format('DD-MM-YYYY')}</Controls.Typography>
                               </Controls.Grid>
 
                             </Controls.Grid>
