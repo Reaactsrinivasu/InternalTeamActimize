@@ -4,8 +4,6 @@ import ReactApexChart from 'react-apexcharts';
 import { useSelector } from 'react-redux';  
 import Controls from "../components/Controls";
 import theme from '../Theme';
-import LoadingComponent from '../components/LoadingComponent';
-import NoDataFound from '../components/NoDataComponent';
 import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const ColumnChart = () => {
     const dashboardDetails = useSelector((state) => state.dashboardData.data);
@@ -165,15 +163,17 @@ const ColumnChart = () => {
             <Controls.Grid container justifyContent="center" alignItems="center">
                 <Controls.Grid item xl={12} lg={12} md={12} sm={12}>
                     <Controls.Paper sx={{ pr: 2, mt: 2, boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', borderRadius: '10px',  backgroundColor:  theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor, }}>
+                        
                         <ReactApexChart
+                            
                             options={data?.options}
                             series={data?.series}
                             type="bar"
                             height={300}
                             width="100%" 
                         />
-                         <Controls.Grid >
-                            <Controls.Typography variant='h6' sx={{textAlign:'center', paddingBottom:'10px'}}>Total Working Hours : {totalWorkingHours}</Controls.Typography>
+                        <Controls.Grid >
+                            <Controls.Typography variant='h6' sx={{textAlign:'center', paddingBottom:'10px'}}>Total Working Hours :{totalWorkingHours}</Controls.Typography>
                         </Controls.Grid>
                     </Controls.Paper>
                 </Controls.Grid>
@@ -185,8 +185,14 @@ const ColumnChart = () => {
 
     return (
         <>
-            {/* <CustomColumnChart /> */}
+        {totalWorkingHours === 0 ? (
+            <>
             <NoDataFoundDashBoard />
+            </>
+        ) : (
+            <CustomColumnChart />
+
+        )}
         </>
     );
 };

@@ -259,7 +259,7 @@ const HolidaysMangement = () => {
                            {item.title}
                          </Typography>
                          <Typography variant="subtitle1" gutterBottom>
-                           {dayjs(item.date).format('MM-DD-YYYY')}
+                           {dayjs(item.date).format('DD-MM-YYYY')}
                          </Typography>
                          <Typography variant="subtitle1" gutterBottom>
                            {item.day}

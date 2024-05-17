@@ -7,6 +7,7 @@ import Controls from "../components/Controls";
 import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const PieChart = () => {
     const dashboard_PieChart = useSelector((state) => state.dashboardData.data);
+    let totalWorkingHoursCheck = dashboard_PieChart?.total_non_worked_hours;
     const [pieChart, setPieChart] = useState({
         series: [[], [], []],
         options: {
@@ -177,10 +178,15 @@ const PieChart = () => {
 
     return (
         <>
-            {/* <Controls.Box sx={{ mt: 3, }}>
-                <ReactApexChart options={pieChart?.options} series={pieChart?.series} type="pie" height={350} width='100%' />
-            </Controls.Box> */}
+        {totalWorkingHoursCheck === 0 ? (
             <NoDataFoundDashBoard />
+        ) : (
+            <>
+            <Controls.Box sx={{ mt: 3, }}>
+                <ReactApexChart options={pieChart?.options} series={pieChart?.series} type="pie" height={350} width='100%' />
+            </Controls.Box>
+            </>
+        )}
         </>
     );
 };
