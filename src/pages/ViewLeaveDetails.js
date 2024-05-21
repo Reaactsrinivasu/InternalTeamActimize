@@ -12,11 +12,11 @@ const style = {
   top: '40%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 680,
-  bgcolor: theme.palette.customColorOrange.main,
-  borderRadius: 8, // Adjust the value as needed
+  width: 730,
+  bgcolor: "#FFFFFF",
+  borderRadius: 1, // Adjust the value as needed
   boxShadow: 24,
-  p: 4,
+  p: 0,
 };
 const ViewLeaveDetails = ({ show, closeModal, data }) => {
   const [open, setOpen] = useState(show);
@@ -29,43 +29,70 @@ const ViewLeaveDetails = ({ show, closeModal, data }) => {
           aria-describedby="modal-modal-description"
         >
           <Controls.Box sx={style}>
-            <Controls.Typography sx={{ mb: 2}} id="modal-modal-title" variant="h2" >
-              View Leave Details
-            </Controls.Typography>
+          <Controls.Grid xs={12} sx={{ backgroundColor: theme.palette.error.main, padding: '10px',borderTopLeftRadius:'5px',borderTopRightRadius:'5px' }}>
+              <Controls.Typography variant='h3' sx={{color:theme.palette.success.main}} textAlign='center'> View Leave Details</Controls.Typography>
+            </Controls.Grid>
+            <Controls.Grid container sx={{ marginTop: '10px', padding:'10px 20px' }}>
+                <Controls.Grid xs={6} sx={{ display: 'flex', padding:'10px 0px' }}>
+                  <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h11'>Purpose of Leave</Controls.Typography>
+                    <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={6} >
+                    <Controls.Typography variant='h12' sx={{ marginLeft: '20px' }}>{data.leave_purpose}</Controls.Typography>
+                  </Controls.Grid>
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex',padding:'10px 0px' }}>
+                  <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h11'>Type of Leave</Controls.Typography>
+                    <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={6} >
+                    <Controls.Typography variant='h12' sx={{ marginLeft: '20px' }}>{data.type_of_leave}</Controls.Typography>
+                  </Controls.Grid>
 
-            <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 250 }}>
-                <Controls.Typography  variant="subtitle1">Purpose of Leave</Controls.Typography>
-                <Controls.Typography variant="subtitle2">{data.leave_purpose}</Controls.Typography>
-              </Controls.Box>
-              <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 300, mb: 3 }}>
-              <Controls.Typography  variant="subtitle1">Type of Leave</Controls.Typography>
-                <Typography variant="subtitle2">{data.type_of_leave}</Typography>
-              </Controls.Box>
-            </Controls.Box>
-            <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 250 }}>
-              <Controls.Typography  variant="subtitle1">Start Date</Controls.Typography>
-                <Typography component="span" variant="subtitle2">{dayjs(data.start_date).format('DD-MM-YYYY')}</Typography>
-              </Controls.Box>
-              <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 300, mb: 3 }}>
-              <Controls.Typography  variant="subtitle1">End Date</Controls.Typography>
-                <Controls.Typography component="span" variant="subtitle2">{dayjs(data.end_date).format('DD-MM-YYYY')}</Controls.Typography>
-              </Controls.Box>
-            </Controls.Box>
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex',padding:'10px 0px' }}>
+                  <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h11'>Start Date</Controls.Typography>
+                    <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={6} >
+                    <Controls.Typography variant='h12' sx={{ marginLeft: '20px' }}>{dayjs(data.start_date).format('DD-MM-YYYY')}</Controls.Typography>
+                  </Controls.Grid>
 
-            <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 250 }}>
-              <Controls.Typography  variant="subtitle1">Status</Controls.Typography>
-                <Controls.Typography variant="subtitle2" sx={{ 'color': data.approval === false ? 'red' : 'green' }} component="span">{data.approval === false ? 'Not Approved' : 'Approved'}</Controls.Typography>
-              </Controls.Box>
-              <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 300, mb: 3 }}>
-              <Controls.Typography  variant="subtitle1">Permission</Controls.Typography>
-               
-                <Controls.Typography variant="subtitle2" sx={{ 'color': data.approval === false ? 'red' : 'green' }} component="span">{data.approval === false ? 'Not Approved' : 'Approved'}</Controls.Typography>
-              </Controls.Box>
-            </Controls.Box>
-          
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex',padding:'10px 0px' }}>
+                  <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h11'>End Date</Controls.Typography>
+                    <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={6} >
+                    <Controls.Typography variant='h12' sx={{ marginLeft: '20px' }}>{dayjs(data.end_date).format('DD-MM-YYYY')}</Controls.Typography>
+                  </Controls.Grid>
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex',padding:'10px 0px' }}>
+                  <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h11'>Status</Controls.Typography>
+                    <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={6} >
+                    <Controls.Typography variant='h12' sx={{ marginLeft: '20px','color': data.approval === false ? 'red' : 'green' }}>{data.approval === false ? 'Not Approved' : 'Approved'}</Controls.Typography>
+                  </Controls.Grid>
+                </Controls.Grid>
+                <Controls.Grid xs={6} sx={{ display: 'flex',padding:'10px 0px' }}>
+                  <Controls.Grid xs={6} sx={{ display: 'flex' }}>
+                    <Controls.Typography variant='h11'>Permission</Controls.Typography>
+                    <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                  </Controls.Grid>
+                  <Controls.Grid xs={6} >
+                    <Controls.Typography variant='h12' sx={{ marginLeft: '20px', 'color': data.approval === false ? 'red' : 'green' }}>{data.approval === false ? 'Not Approved' : 'Approved'}</Controls.Typography>
+                  </Controls.Grid>
+                </Controls.Grid>
+              </Controls.Grid>
+
+      
+          <Controls.Typography sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end', margin: '10px' }}>
                     <Controls.FormAddCloseButton
                       variant="contained"
                       onClick={() => {
@@ -73,6 +100,7 @@ const ViewLeaveDetails = ({ show, closeModal, data }) => {
                       }}
                       buttonText="Close"
                     />
+                    </Controls.Typography>
           </Controls.Box>
         </Modal>
       </Controls.Box>

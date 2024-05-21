@@ -4,7 +4,6 @@ import ReactApexChart from 'react-apexcharts';
 import { useSelector } from 'react-redux';  
 import Controls from "../components/Controls";
 import theme from '../Theme';
-import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const ColumnChart = () => {
     const dashboardDetails = useSelector((state) => state.dashboardData.data);
     const totalWorkingHours =  dashboardDetails?.total_working_hours
@@ -185,14 +184,8 @@ const ColumnChart = () => {
 
     return (
         <>
-        {totalWorkingHours === 0 ? (
-            <>
-            <NoDataFoundDashBoard />
-            </>
-        ) : (
             <CustomColumnChart />
 
-        )}
         </>
     );
 };

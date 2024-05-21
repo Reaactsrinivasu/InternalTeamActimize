@@ -33,7 +33,7 @@ const DashboardMangement = () => {
     useEffect(() => {
       setTimeout(() => {
         setLoading(false)
-      }, 1500)
+      }, 1000)
     })
 
 
@@ -48,9 +48,7 @@ const DashboardMangement = () => {
     <>
       <Controls.Grid spacing={2} container rowSpacing={2} columnSpacing={5}>
         <Controls.Grid item xs={12} sm={6} md={4} lg={6} sx={{ boxShadow: '100px rgba(0, 0, 0, 0.1)' }}>
-          
-            {holidays?.length > 0 ? (
-              <>
+       
               <Controls.Card sx={{
             borderRadius: '15px', textAlign: 'center',
             backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor
@@ -108,18 +106,10 @@ const DashboardMangement = () => {
                 </Controls.Grid>
               </Controls.Grid>
           </Controls.Card>
-              </>
-              
-            ) : (
-              <>
-               <NoDataFound />
-               </>
-            )}
+            
         </Controls.Grid>
         <Controls.Grid item xs={12} sm={6} md={4} lg={6} sx={{ boxShadow: '100px rgba(0, 0, 0, 0.1)' }}>
-          {birthdays?.length > 0 ? (
-           
-              <>
+        
               <Controls.Card sx={{ borderRadius: '15px', textAlign: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor }}>
                 <Controls.Typography variant="h2">Upcoming Birthdays</Controls.Typography>
                 <Controls.Box
@@ -151,13 +141,7 @@ const DashboardMangement = () => {
                   </Controls.Box>
                 </Controls.Box>
               </Controls.Card>
-              </>
-          ) : (
            
-            <>
-            <NoDataFound />
-            </>
-          )}
         </Controls.Grid>
       </Controls.Grid>
     </>

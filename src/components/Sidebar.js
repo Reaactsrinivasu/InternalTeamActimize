@@ -238,7 +238,7 @@ const Sidebar = ({ open, setOpen }) => {
         dispatch(loadUserProfileDetailsStart());
     }, [dispatch]);
     const users = useSelector((state) => state.userprofiledetailsdata?.data?.current_user || []);
-    console.log('this is side bar data ---->', users);
+    localStorage.setItem('id',users.id);
     useEffect(() => {
         if (users && users.profile_pic) {
             const base64Image = users.profile_pic;

@@ -233,16 +233,16 @@ const generateValidationSchema = (fields) => {
           .max(50, "Bank Name  is Long!")
           .required('Bank Name  is required');
         break;
-      case "account_number":
-        validationRules.account_number = Yup.string()
-          .min(2, "Account Number is Short!")
-          .max(50, "Account Number is Long!")
-          .required('Account Number is required')
-          .matches(
-            /^[0-9]+$/,
-            "Account Number must be a number"
-          );
-        break;
+        case "account_number":
+          validationRules.account_number = Yup.string()
+            .min(2, "Account Number is Short!")
+            .max(25, "Account Number is Long!")
+            .required('Account Number is required')
+            .matches(
+              /^[0-9]+$/,
+              "Account Number must be a number"
+            );
+          break;
       case "ifsc_code":
         validationRules.ifsc_code = Yup.string()
           .min(2, "IFSE Code  is Short!")
