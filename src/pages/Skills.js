@@ -7,10 +7,8 @@ import {
   createSkillDetailsStart, loadSkillDetailsStart,
   updateSkillDetailsStart, deleteSkillDetailsStart,
 } from '../redux/actions/skillActions';
-import Pagination from '@mui/material/Pagination';
 import { initialValues, generateValidationSchema, } from "../components/Validations";
 import Controls from "../components/Controls";
-import theme from "../Theme"; // Import the theme object
 import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
 const ResuableTable = lazy(() => import("../components/Table"));

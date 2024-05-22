@@ -22,23 +22,6 @@ import Controls from "../components/Controls";
 import { createEventmanDetailsStart, deleteEventmanDetailsStart, loadEventmanDetailsStart, updateEventmanDetailsStart } from '../redux/actions/expertEventmanActions';
 import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
-const SquareCard = styled(Controls.Card)({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  textAlign: 'left',
-  width: 300,
-  height: 300,
-  margin: 'auto',
-  padding: '10px',
-  boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.1)',
-  borderRadius: '10px',
-  '&:hover': {
-    transform: 'scale(1.05)',
-    boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
-  },
-});
 const EventsMangement = () => {
   const dispatch = useDispatch();
   const expertEventsdata = useSelector((state) => state.expertEventmandata?.data?.schedules_and_events || []);
@@ -77,21 +60,6 @@ const EventsMangement = () => {
       handleClose();
     }
   }
-  const style = {
-    p: 4,
-    top: '45%',
-    left: '50%',
-    width: 400,
-    boxShadow: 30,
-    maxHeight: '100%',
-    maxWidth: '100vw',
-    overflowY: 'auto',
-    position: 'absolute',
-    backgroundColor: (theme) =>
-      theme.palette.common.white,
-    transform: 'translate(-50%, -50%)',
-  };
-
   const styles = {
     position: 'absolute',
     top: '50%',

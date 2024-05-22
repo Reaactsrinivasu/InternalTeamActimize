@@ -35,9 +35,6 @@ const generateValidationSchema = (fields) => {
         break;
       case "address":
         validationRules.address = Yup.string()
-          // .test('is-not-empty', 'Address is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
-          // .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
-          // .matches(/^[A-Za-z\s]+$/, { message: 'Address must contain only alphabetic characters and spaces' }) // Allow spaces
           .min(2, 'Address is too short')
           .max(150, 'Address is too long')
           .required('Address is required');
@@ -75,11 +72,6 @@ const generateValidationSchema = (fields) => {
           )
           .required('Joining Date is required');
         break;
-      // case "date_of_end":
-      //   validationRules.date_of_end = Yup
-      //     .date()
-      //     .required('Ending Date is required');
-      //   break;
       case "date_of_end":
         validationRules.date_of_end = Yup
           .date()
@@ -130,9 +122,6 @@ const generateValidationSchema = (fields) => {
         break;
       case "description":
         validationRules.description = Yup.string()
-          // .test('is-not-empty', 'Description is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
-          // .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
-          // .matches(/^[A-Za-z\s]+$/, { message: 'Description must contain only alphabetic characters and spaces' }) // Allow spaces
           .min(2, 'Description is too short')
           .max(200, 'Description is too long')
           .required('Description is required');
@@ -184,11 +173,6 @@ const generateValidationSchema = (fields) => {
           .date()
           .required('Start Date is required');
         break;
-      // case "end_date":
-      //   validationRules.end_date = Yup
-      //     .date()
-      //     .required('End Date is required');
-      //   break;
       case "end_date":
         validationRules.end_date = Yup
           .date()
@@ -204,11 +188,6 @@ const generateValidationSchema = (fields) => {
           .required('Type of Leave is required');
 
         break;
-      // case "number_of_leaves":
-      //   validationRules.number_of_leaves = Yup
-      //     .number()
-      //     .required('Number of Leaves is required');
-      //   break;
       case "number_of_leaves":
         validationRules.number_of_leaves = Yup
           .number()
@@ -463,11 +442,6 @@ const generateValidationSchema = (fields) => {
         break;
       case "designation":
         validationRules.designation = Yup.string()
-          // .test('is-capitalized', 'First letter must be capitalized', (value) => /^[A-Z]/.test(value)) // Check if first letter is capitalized
-          // .matches(/^[A-Za-z\s]+$/, { message: 'Designation must contain only alphabetic characters and spaces' }) // Allow spaces
-          // .min(2, 'Designation is too short')
-          // .max(50, 'Designation is too long')
-          // .required('Designation is required');
           .test('is-not-empty', 'Designation is required', value => value !== undefined && value.trim() !== '') // Check if the field is not empty
           .test('is-capitalized', 'First letter must be capitalized', value => /^[A-Z]/.test(value)) // Check if first letter is capitalized
           .matches(/^[A-Za-z\s]+$/, { message: 'Designation must contain only alphabetic characters and spaces' }) // Allow spaces
@@ -635,12 +609,6 @@ const generateValidationSchema = (fields) => {
           .max(50, 'Reason is too long')
           .required('Reason is required');
         break;
-      // case "seviority":
-      //   validationRules.seviority = Yup.number()
-      //     .required('Seviority is required')
-      //     .max(9999999999, 'Seviority must be at most 10 digits');
-
-      //   break;
       case "seviority":
         validationRules.seviority = Yup.number()
           .required('Seviority is required')

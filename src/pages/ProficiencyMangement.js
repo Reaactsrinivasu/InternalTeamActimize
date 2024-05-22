@@ -9,7 +9,6 @@ import {
 } from "../components/Validations";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
-import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
 import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
@@ -22,13 +21,8 @@ const columns = [
   { id: "designation", label: "Designation" },
 ];
 const ProficiencyMangement = () => {
-  const [userInfo, setUserInfo] = useState({});
-  const [editMode, setEditMode] = useState(false);
-  const [open, setOpen] = React.useState(false);
   const [loading , setLoading] = useState(true);
-  const handleOpen = () => { setOpen(true); }
   const [changeData, setChangeData] = useState(false);
-  const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
   const [selectedSkill, setSelectedSkill] = useState("");
   const dispatch = useDispatch();
 
@@ -70,7 +64,6 @@ const ProficiencyMangement = () => {
     </Suspense>
   ), [columns, expertProficiencydataone,]);
 
-  const message = expertProficiencydata?.message 
   return (
     <ThemeProvider theme={theme}>
       <>

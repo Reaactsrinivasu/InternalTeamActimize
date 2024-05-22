@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { loadBankWiseDetailsStart } from '../redux/actions/expertPersonalWiseActions';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Controls from "../components/Controls";
@@ -15,9 +14,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
-import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
-import BankDetails from './BankDetails';
 
 
 import { useFormik } from 'formik';
@@ -33,23 +30,8 @@ const ExpertWisebankDetails = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false)
-  const [data, setData] = useState({});
   const navigate = useNavigate();
   const [formChange, setFormChange] = useState(false);
-  // const expertfamilywise = useSelector((state) => state.expertbankWiseData?.data?.data || []);
-  // useEffect(() => {
-  // dispatch(loadBankWiseDetailsStart(id));
-  // }, [dispatch, id]);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 800);
-  // })
-  // const message = expertfamilywise?.message ? false : true
-
-
-
   const formFields = ["bank_name", "account_number", "ifsc_code", "branch_name"];
   const validationSchema = generateValidationSchema(formFields);
 
@@ -82,7 +64,7 @@ const ExpertWisebankDetails = () => {
   const bankData = useSelector((state) => state.bankdata?.data?.data[0] || '');
   useEffect(() => {
     dispatch(loadBankDetailsStart(id));
-  }, [dispatch], id);
+  }, [dispatch, id]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -92,11 +74,9 @@ const ExpertWisebankDetails = () => {
 
   useEffect(() => {
     if (bankData) {
-      setData(bankData);
       setEditMode(true);
       formik.setValues(bankData);
     } else {
-      setData(initialValues);
       setEditMode(false);
       formik.setValues(initialValues);
     }

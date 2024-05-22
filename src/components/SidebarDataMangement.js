@@ -3,7 +3,6 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import LogoutIcon from '@mui/icons-material/Logout';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import EventIcon from '@mui/icons-material/Event';
@@ -11,9 +10,6 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CakeIcon from '@mui/icons-material/Cake';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import DevicesIcon from '@mui/icons-material/Devices';
-import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import ViewKanbanIcon from '@mui/icons-material/ViewKanban';
 export const SidebarDataMangement = [
 
     { 

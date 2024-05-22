@@ -16,20 +16,7 @@ import { createAttendenceListDetailsStart, loadAttendenceListDetailsStart, updat
 import { loadAllUsersStart } from '../redux/actions/allUsersActions';
 import Controls from "../components/Controls";
 import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
-const style = {
-  p: 4,
-  top: '45%',
-  left: '50%',
-  width: 300,
-  boxShadow: 30,
-  maxHeight: '100%',
-  maxWidth: '100vw',
-  overflowY: 'auto',
-  position: 'absolute',
-  backgroundColor: (theme) =>
-    theme.palette.common.white,
-  transform: 'translate(-50%, -50%)',
-};
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     // backgroundColor: theme.palette.common.black,
@@ -53,14 +40,6 @@ const ExpertAttendenceList = () => {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [selectedDate, setSelectedDate] = React.useState(null);
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    } else if (event.key === 'Escape') {
-      setOpen(false);
-    }
-  }
   const initialValues = {
     date: new Date(),
     present: [],
@@ -215,7 +194,6 @@ const ExpertAttendenceList = () => {
             </Controls.Box>
           </Controls.ReusablePaper>
         </Controls.Box>
-        {/* <Controls.Paper sx={{ mt: 5, borderRadius: '10px', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}> */}
           <Controls.Grid container spacing={2}>
             <Controls.Grid item xs={10}>
               {Array.isArray(expertmonthlydata) && expertmonthlydata.length > 0 ? (
@@ -263,11 +241,6 @@ const ExpertAttendenceList = () => {
                       ))}
                     </Controls.TableBody>
                   </Controls.Table>
-                  {/* <Controls.Box sx={{ textAlign: 'center', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
-                    <Controls.Button type="submit" onClick={handleAttendanceUpdate} variant="contained" sx={{margin:'10px 0px', backgroundColor:theme.palette.error.main, paddingTop:'8px', "&:hover":{backgroundColor:theme.palette.error.main}}}>
-                      update
-                    </Controls.Button>
-                  </Controls.Box> */}
                     <Controls.Grid container sx={{justifyContent:'center', margin:'10px 0px'}}>
                         <Controls.FormAddCloseButton
                         buttonType="submit"
@@ -329,20 +302,6 @@ const ExpertAttendenceList = () => {
                             </Controls.TableBody>
                           )}
                         </Controls.Table>
-                        {/* <Controls.Box sx={{ textAlign: 'center',  backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}>
-                          <Controls.Button type="button" variant="contained" 
-                            sx={{ margin:'10px 0px', paddingTop:'10px',
-                            
-                              bgcolor: theme.palette.error.main,
-                              display: formChange ? 'block' : 'none' ,
-                              '&:hover': {
-                                bgcolor: theme.palette.error.main,
-                              },
-                            }}
-                            onClick={handleSubmit}>
-                            Submit
-                          </Controls.Button>
-                        </Controls.Box> */}
                         <Controls.Grid container sx={{justifyContent:'center' }}>
                           <Controls.Grid sx={{display: formChange ? 'block' : 'none', margin:'10px 0px',}}>
                         <Controls.FormAddCloseButton
@@ -398,7 +357,6 @@ const ExpertAttendenceList = () => {
 
             </Controls.Grid>
           ) : ('')}
-        {/* </Controls.Paper> */}
       </>
     </ThemeProvider>
   )

@@ -10,7 +10,6 @@ import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import dayjs from 'dayjs'; 
 import theme from "../Theme";
-import NoDataFound from '../components/NoDataComponent';
 import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const ResuableTable = lazy(() => import("../components/Table"));
 const columns = [
@@ -23,27 +22,10 @@ const columns = [
   { id: "expert_working_days", label: " Expert working days" },
 ];
 
-const ITEMS_PER_PAGE = 1;
 const ExpertMonthlyAttendenceList = () => {
-  const anchorRef = React.useRef(null);
   const [userInfo, setUserInfo] = useState({});
-  const [editMode, setEditMode] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => { setOpen(true); }
-  const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
   const [selectedDate, setSelectedDate] = useState(null); // State to store the selected date
   const dispatch = useDispatch();
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    } else if (event.key === 'Escape') {
-      setOpen(false);
-    }
-  }
   const initialValues = {
     year: '',
     month: '',
@@ -85,12 +67,7 @@ const ExpertMonthlyAttendenceList = () => {
   let id = userInfo.id;
   useEffect(() => {
     if (id) {
-      setEditMode(true);
       formik.setValues(userInfo);
-      handleOpen();
-    }
-    else {
-      setEditMode(false);
     }
   }, [userInfo]);
 
@@ -137,7 +114,6 @@ const ExpertMonthlyAttendenceList = () => {
             </Controls.Box>
           </Controls.ReusablePaper>
         </Controls.Box>
-        {/* <Controls.Paper sx={{ mt: 5, borderRadius: '10px', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}> */}
           <Controls.Grid container spacing={2}>
             <Controls.Grid item xs={10}>
               <Controls.Paper sx={{ borderRadius: "10px" }}>
@@ -148,19 +124,6 @@ const ExpertMonthlyAttendenceList = () => {
             </Controls.Grid>
             <Controls.Grid item xs={2}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                {/* <DesktopDatePicker
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  views={['year', 'month']}
-                  openTo="year"
-                  renderInput={(params) => (
-                    <Controls.TextField
-                      {...params}
-                      // Set the format to display only the month
-                      format="MMMM yyyy"
-                    />
-                  )}
-                /> */}
                 <DesktopDatePicker
                   value={selectedDate}
                   onChange={handleDateChange}
@@ -199,7 +162,6 @@ const ExpertMonthlyAttendenceList = () => {
             </Controls.Grid>
 
           </Controls.Grid>
-        {/* </Controls.Paper> */}
 
         {message ? (
           <>

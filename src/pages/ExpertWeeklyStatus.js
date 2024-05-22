@@ -55,7 +55,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   backgroundColor: theme.palette.customColorOrange.main,
 
 }));
-const ITEMS_PER_PAGE = 1;
 const ExpertWeeklyStatus = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);

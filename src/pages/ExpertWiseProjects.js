@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
-import Pagination from '@mui/material/Pagination';
 import ContactEmergencyRoundedIcon from '@mui/icons-material/ContactEmergencyRounded';
 import Diversity1RoundedIcon from '@mui/icons-material/Diversity1Rounded';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';

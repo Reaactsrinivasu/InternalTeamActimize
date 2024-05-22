@@ -17,54 +17,6 @@ const CarouselCard = ({ title, date }) => {
     });
     return (
         <>
-
-        {/* <Grid container>
-            <Typography variant="subtitle1" sx={{margin:'auto', paddingBottom:'20px', color:theme.palette.success.main, fontWeight:'bold'}}>Upcoming Holidays</Typography>
-            <animated.div
-                style={{ ...styles, height: "fit-content" }}
-                onMouseEnter={() => setShown(true)}
-                onMouseLeave={() => setShown(false)}
-            >
-                <div
-                    style={{
-                        background: "rgba(0, 0, 0, 0.1)",
-                        backdropFilter: "blur(22px)",
-                        position: "relative",
-
-                    }}
-                >
-                    <div style={{ position: "absolute", width: "100%", height: "100%" }}>
-                      <img
-                          src={SquareBorder1}
-                          alt="SquareBorder1"
-                          style={{ objectFit: "fill", width: "100%", height: "100%" }}
-                      />
-                  </div>
-                    <Card
-                        style={{
-                            padding:'40px 20px',
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "220px",
-                            width: '200px',
-                            backgroundColor: theme.palette.success.main,
-
-                        }}
-                    >
-                        <Typography variant="h4"
-                            sx={{ textAlign: 'center', marginBottom:'20px' }}
-                        >{title}</Typography>
-
-                        <Typography variant="subtitle1"
-                            sx={{ textAlign: 'center',  }} >{date}</Typography>
-
-                    </Card>
-                </div>
-            </animated.div>
-            </Grid> */}
-
             <Grid container item xs={12}  sx={{border:'2px solid red', width:'100%'}}>
                 <Grid sx={{border:'2px solid blue'}}>
                     <Grid>

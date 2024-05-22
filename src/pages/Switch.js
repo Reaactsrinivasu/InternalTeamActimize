@@ -11,9 +11,7 @@ import { Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/mate
 import { Box, Paper, Switch, TextField, Button, MenuItem, Typography } from '@mui/material';
 const HoursEntry = () => {
     const [checked, setChecked] = React.useState(false);
-    const [editMode, setEditMode] = useState(false);
     let [weekData, setWeekData] = useState([]);
-    const [addHoursData, setAddHoursData] = useState([]);
     const dispatch = useDispatch();
     let currentWeekData = useSelector((state) => state.weekdata?.data);
     useEffect(() => {

@@ -185,8 +185,6 @@ const Hrportal = () => {
                     <ListItem
                         alignItems="flex-start"
                         style={{
-                            // backgroundColor: notification.is_read ? '#f0f0f0' : '#e6f7ff',
-                            // Different background colors for read and unread notifications
                             cursor: 'pointer',
                             transition: 'height 0.2s',
                             overflow: 'hidden',
@@ -269,7 +267,6 @@ const Hrportal = () => {
                 PaperProps={{
                     style: {
                         maxHeight: '300px', // Adjust the max height as needed
-                        // overflow: 'auto',
                         // Enable scrolling
                         '&::-webkit-scrollbar': {
                             display: 'none', // Hide the scrollbar for WebKit browsers (Chrome, Safari, etc.)
@@ -279,9 +276,7 @@ const Hrportal = () => {
             >
                 <Box sx={{
                     width: '300px', border: '1px solid #ccc', marginTop: "-9px",
-                    //   padding: '16px',
                     textAlign: 'center',
-                    // opacity:"0.8"
                     backgroundColor:theme.components.tables.styleOverrides.containedPrimarysidebar.containedPrimarysidebarheader.Notificationbox.backgroundColor,
                 }}>
                     <Typography variant="h6" sx={{ marginBottom: '8px', marginTop: "8px", }}>
@@ -310,7 +305,6 @@ const Hrportal = () => {
       <ThemeProvider theme={theme}>
         <Controls.Box sx={{ display: "flex" }}>
           <CssBaseline />
-          {/* <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}> */}
           <AppBar
             sx={{
               backgroundColor:
@@ -319,10 +313,6 @@ const Hrportal = () => {
               display: "flex",
             }}
           >
-            {/* <Controls.Toolbar  sx={{ display: 'flex', flexDirection: 'row',
-                             justifyContent: 'space-between' 
-                             }} > */}
-
             <Controls.Stack
               sx={{
                 display: "flex",
@@ -346,7 +336,6 @@ const Hrportal = () => {
                         theme.components.MuiButton.styleOverrides
                           .containedAddButton.borderColor,
                       border: "1px solid", // Set border color and width
-                      // borderRadius: "10px",
                     },
                   }}
                 >
@@ -356,7 +345,6 @@ const Hrportal = () => {
                       color:
                         theme.components.MuiButton.styleOverrides
                           .containedAddButton.textColor,
-                      //   color: "rgb(158, 158, 158)",
                       fontSize: "1.8rem",
                     }} // Adjust fontSize for larger icon
                     onClick={handleClickNotifications}
@@ -367,7 +355,6 @@ const Hrportal = () => {
                 <Icon
                   icon="icons8:shutdown"
                                 style={{
-                                    // color: "rgb(158, 158, 158)"
                                     color:'red'
                                 }}
                   onClick={handleClick}
@@ -447,9 +434,7 @@ const Hrportal = () => {
             </Controls.Menu>
 
             {renderNotificationsMenu()}
-            {/* </Controls.Toolbar> */}
           </AppBar>
-          {/* </Controls.Box> */}
           <SidebarMangment {...{ open, setOpen }} />
           <Controls.Box
             component="main"

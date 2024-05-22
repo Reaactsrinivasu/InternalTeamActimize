@@ -42,7 +42,6 @@ const Leaves = () => {
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = useState(false);
   const [loading , setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
   const [initialFormValue, setInitialFormValue] = useState(null);
   const handleOpen = () => { setOpen(true); }
   const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
@@ -138,7 +137,6 @@ const Leaves = () => {
   }
   const handlePageChange = (event, page) => {
     dispatch(loadLeaveDetailsStart(page));
-    setCurrentPage(page);
   };
   const formik = useFormik({
     initialValues: initialValues,

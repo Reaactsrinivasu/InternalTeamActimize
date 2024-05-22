@@ -5,7 +5,6 @@ import { loadUsersStart } from '../redux/actions/UserActions';
 import { useNavigate } from "react-router-dom";
 import * as dayjs from 'dayjs';
 import Controls from "../components/Controls";
-import { ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider from Material-UI
 import theme from "../Theme"; // Import your theme file
 import LoadingComponent from '../components/LoadingComponent';
 const UserProfile = () => {
@@ -69,9 +68,7 @@ const UserProfile = () => {
   
           </Controls.Grid>
           <Controls.Grid rowSpacing={3} columnSpacing={3} item xs={10.8} container p={1} sx={{
-            // "&.MuiGrid-root": {
-            //   paddingLeft: "11.7%",
-            // },
+           
           }}>
             <Controls.Grid item xs={12} sm={12} md={3} >
               <Controls.Paper maxWidth="xlg" sx={{ width: '100%',  boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor, borderRadius: '5px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 4 }}>
@@ -133,8 +130,6 @@ const UserProfile = () => {
                         <Controls.PinDropTwoToneIcon sx={{ width: '25px', height: '25px', color: theme.palette.error.main }} />
                         <Controls.Typography variant="h6" sx={{
                           ml: 1,
-                          // overflow: 'auto',
-                          // whiteSpace: 'nowrap',
                           '&::-webkit-scrollbar': {
                             width: '5px',
                           },
@@ -162,9 +157,7 @@ const UserProfile = () => {
         </Controls.Grid>
         <Controls.Grid container sx={{ justifyContent: 'end' }}>
           <Controls.Grid rowSpacing={3} columnSpacing={3} item xs={10.8} container p={1} sx={{
-            // "&.MuiGrid-root": {
-            //   paddingLeft: "11.7%",
-            // },
+          
           }}>
             <Controls.Grid item xs={12} sm={12} md={6} >
               <Controls.Paper maxWidth="xlg" sx={{ width: '100%', height: '100%', boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', backgroundColor: theme.components.tables.styleOverrides.containedPrimarycardpaper.backgroundColor, borderRadius: '5px', p: 5 }}>

@@ -3,12 +3,7 @@ import { Button } from '@mui/material/';
 import theme from "../Theme";
 const ReuseableButton = (props) => {
    let buttonVariant = props.buttonVariant;
-   let buttonColor = props.buttonColor;
    let buttonText = props.buttonText;
-   let hoverColor = props.hoverColor; // New prop for hover color
-   let textColor = props.textColor; // New prop for text color
-   let bgcolor = props.bgcolor;
-   let disabled = props.disabled;
 
   return (
     <>
@@ -27,19 +22,10 @@ const ReuseableButton = (props) => {
           color:
             theme.components.MuiButton.styleOverrides.containedCustom.color,
           paddingTop: "10px",
-          // color: "white", // Apply text color
-          // bgcolor: theme.components.MuiButton.styleOverrides.containedCustom.backgroundColor,
-          // '&:hover': {
-          //   bgcolor: theme.components.MuiButton.styleOverrides.containedCustom.backgroundColor,
-          // },
-          // backgroundColor: !buttonText
-          //   ? theme.components.MuiButton.styleOverrides.containedAddButton
-          //   : bgcolor,
           backgroundColor:
             theme.components.MuiButton.styleOverrides.containedAddButton
               .backgroundColor,
           "&:hover": {
-            // bgcolor: !buttonText ? "#4d79ff" : bgcolor,
             backgroundColor:
               theme.components.MuiButton.styleOverrides.containedAddButton
                 .backgroundColor,

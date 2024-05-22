@@ -31,7 +31,6 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [base64String, setBase64String] = useState(''); // Define base64String state
   const handleDrawerOpen = () => {
     setOpen(!open);
   };

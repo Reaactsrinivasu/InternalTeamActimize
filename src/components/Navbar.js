@@ -323,7 +323,6 @@ const Navbar = () => {
                       theme.components.MuiButton.styleOverrides
                         .containedAddButton.borderColor,
                     border: "1px solid", // Set border color and width
-                    // borderRadius: "10px",
                   },
                 }}
               >
@@ -334,7 +333,6 @@ const Navbar = () => {
                       theme.components.MuiButton.styleOverrides
                         .containedAddButton.textColor,
                     fontSize: "1.8rem",
-                    // color: "rgb(158, 158, 158)",
                   }} // Adjust fontSize for larger icon
                   onClick={handleClickNotifications}
                 />
@@ -344,7 +342,6 @@ const Navbar = () => {
               <Icon
                 icon="icons8:shutdown"
                 style={{
-                  // color: "rgb(158, 158, 158)"
                   color: "red",
                 }}
                 onClick={handleClick}

@@ -1,13 +1,10 @@
 import React from 'react';
-import { Box } from '@mui/material';
 import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { useSelector} from 'react-redux';
 import Controls from "../components/Controls";
-import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const PieChart = () => {
     const dashboard_PieChart = useSelector((state) => state.dashboardData.data);
-    let totalWorkingHoursCheck = dashboard_PieChart?.total_non_worked_hours;
     const [pieChart, setPieChart] = useState({
         series: [[], [], []],
         options: {
@@ -91,9 +88,6 @@ const PieChart = () => {
         let leaveHours = dashboard_PieChart?.total_hours_in_leave;
         let nonWorkingHours = dashboard_PieChart?.total_non_worked_hours;
         let totalWorkingHours = dashboard_PieChart?.total_working_hours;
-        // let leaveHours = 40;
-        // let nonWorkingHours = 60;
-        // let totalWorkingHours = 230;
         setPieChart(
             {
             series: [totalWorkingHours, nonWorkingHours, leaveHours,],

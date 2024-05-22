@@ -1,64 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
-import { createBankDetailsStart, loadBankDetailsStart } from '../redux/actions/bankDetailsActions';
+import {  loadBankDetailsStart } from '../redux/actions/bankDetailsActions';
 import Controls from "../components/Controls";
-import { initialValues, generateValidationSchema } from "../components/Validations";
 import theme from "../Theme"; // Import your theme file
-import { Typography } from '@mui/material';
 import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
-import { useParams } from 'react-router-dom';
-import { loadUserProfileDetailsStart } from '../redux/actions/userProfileDataActions';
 
 const BankDetails = () => {
-  // console.log('this is props---->', props)
-  // const bankData = props.data;
-  const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState(null)
   const [checkId, setCheckId] = useState(false);
   const dispatch = useDispatch();
-  // const { user_id } = useParams();
-  // const id = user_id;
-  // console.log('this is id --->', id, typeof id);
-  // const formFields = ["bank_name", "account_number", "ifsc_code", "branch_name"];
-  // const validationSchema = generateValidationSchema(formFields);
-
-  // const handleSubmit = (values, { setStatus, resetForm }) => {
-  //   setStatus();
-  //   if (!editMode) {
-  //     dispatch(createBankDetailsStart(values));
-  //     toast.success('Data Added Successfully');
-  //   } else {
-  //     dispatch(createBankDetailsStart(values));
-  //     toast.success('Data Updated Successfully');
-  //   }
-  //   resetForm();
-  //   setEditMode(false);
-  //   dispatch(loadBankDetailsStart());
-  // };
-
-  // const formik = useFormik({
-  //   initialValues: initialValues,
-  //   onSubmit: handleSubmit,
-  //   validationSchema: validationSchema,
-  // });
-
-
-  // useEffect(() => {
-  //   dispatch(loadUserProfileDetailsStart());
-  // }, [dispatch]);
-  // const users = useSelector((state) => state.userprofiledetailsdata?.data?.current_user || []);
-  // const id = users.id;
   useEffect(() => {
     setId(localStorage.getItem('id'));
     setCheckId(true);
   })
   const bankData = useSelector((state) => state.bankdata?.data?.data[0] || '' );
-  console.log('this is data in emp bank details ---->', bankData)
   useEffect(() => {
       if (checkId) {
         dispatch(loadBankDetailsStart(id));
@@ -70,14 +28,6 @@ const BankDetails = () => {
       setLoading(false)
     }, 1000)
   })
-
-  // useEffect(() => {
-  //   if (bankData) {
-  //     setEditMode(true);
-  //     formik.setValues(bankData);
-  //   }
-  // }, [bankData]);
-
   const message = bankData === '' ? true : false; 
 
   return (

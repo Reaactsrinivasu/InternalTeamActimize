@@ -193,7 +193,6 @@ const SingleLevel = ({ item }) => {
         <ThemeProvider theme={theme}>
             <ListItem button onClick={() => navigate(item.path)}>
                 <ListItemIcon sx={{ color: theme.components.tables.styleOverrides.containedCustombaricons.color, opacity: "0.7" }}>{item.icon} </ListItemIcon>
-                {/* <CustomListItemText primary={item.title} onClick={() => navigate(item.path)} /> */}
                 <CustomListItemText primary={item.title} icon={item.icon} onClick={() => navigate(item.path)} />
             </ListItem>
         </ThemeProvider>
@@ -228,12 +227,7 @@ const MultiLevel = ({ item }) => {
 const Sidebar = ({ open, setOpen }) => {
     const theme = useTheme();
     const [decodedProfilePic, setDecodedProfilePic] = useState('');
-    const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const dispatch = useDispatch();
-    const handleToggleSidebar = () => {
-    
-        setOpen(!open);
-    };
     useEffect(() => {
         dispatch(loadUserProfileDetailsStart());
     }, [dispatch]);

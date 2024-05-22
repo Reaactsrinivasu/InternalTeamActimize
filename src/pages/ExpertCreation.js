@@ -323,13 +323,6 @@ const ExpertCreation = () => {
                 </Controls.Grid>
                 <Controls.Grid item xs={12}>
                   <Controls.Box pr={2} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-                    {/* <Controls.Button
-                        type="submit"
-                        variant="contained"
-                        sx={{backgroundColor: theme.components.MuiButton.styleOverrides.containedAddButton}}
-                      >
-                        Add
-                      </Controls.Button> */}
                    
                    <Controls.FormAddCloseButton
                     buttonType="submit"

@@ -154,26 +154,6 @@ const Requestsmangement = () => {
                           </Controls.Grid>
                         </Controls.Grid>
 
-                        {/* <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={5} sx={{ display: 'flex' }}>
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }} >Current Address </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' sx={{textOverflow: 'ellipsis', overflow:'hidden',whiteSpace: 'nowrap',}} >{expertDetailswise?.present_address}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid> */}
-
-                        {/* <Controls.Grid sx={{ display: 'flex', padding: '10px 0px' }}>
-                        <Controls.Grid item xs={5} sx={{ display: 'flex' }} >
-                          <Controls.Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>Permanent Address </Controls.Typography>
-                          <Controls.Typography variant='subtitle1' sx={{ marginLeft: 'auto', fontWeight: 'bold' }}>:</Controls.Typography>
-                        </Controls.Grid>
-                        <Controls.Grid item xs={7} sx={{ paddingLeft: '30px' }}>
-                          <Controls.Typography variant='subtitle2' sx={{ textOverflow: 'ellipsis', overflow: 'hidden',whiteSpace: 'nowrap', }} >{expertDetailswise?.permanent_address}</Controls.Typography>
-                        </Controls.Grid>
-                      </Controls.Grid> */}
-
                       </Controls.Grid>
 
                     </Controls.Grid>

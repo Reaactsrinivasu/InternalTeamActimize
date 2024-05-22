@@ -37,6 +37,7 @@ const ImageSlider = () => {
                                     designation={item?.designation}
                                     title={`${item?.first_name} ${item?.last_name}`}
                                     src={item?.profile_pic}
+                                    display={true}
                                 />
                             }
                         ))}
