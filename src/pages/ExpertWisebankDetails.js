@@ -58,17 +58,19 @@ const ExpertWisebankDetails = () => {
     if (!editMode) {
       dispatch(createBankDetailsStart(values, id));
       toast.success('Data Added Successfully');
-      dispatch(loadBankDetailsStart(id));
-      window.location.reload();
+      // dispatch(loadBankDetailsStart(id));
+      // window.location.reload();
     } else {
       dispatch(createBankDetailsStart(values, id));
       toast.success('Data Updated Successfully');
-      dispatch(loadBankDetailsStart(id));
+      // dispatch(loadBankDetailsStart(id));
     }
     resetForm();
     setEditMode(false);
-    dispatch(loadBankDetailsStart(id));
-    window.location.reload();
+    setTimeout(() => {
+      dispatch(loadBankDetailsStart(id));
+      setFormChange(false);
+    }, 1000);
   };
 
   const formik = useFormik({
@@ -77,7 +79,6 @@ const ExpertWisebankDetails = () => {
     validationSchema: validationSchema,
   });
 
-  // const bankData = useSelector((state) => state.bankdata?.data || '');
   const bankData = useSelector((state) => state.bankdata?.data?.data[0] || '');
   useEffect(() => {
     dispatch(loadBankDetailsStart(id));

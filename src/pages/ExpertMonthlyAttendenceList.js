@@ -8,6 +8,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { loadMonthlyAttendenceDetailsStart } from '../redux/actions/expertMonthlyAttenListActions';
 import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
+import dayjs from 'dayjs'; 
 import theme from "../Theme";
 import NoDataFound from '../components/NoDataComponent';
 import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
@@ -47,14 +48,28 @@ const ExpertMonthlyAttendenceList = () => {
     year: '',
     month: '',
   };
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  //   if (date && typeof date === 'object' && date.$d instanceof Date) {
+  //     const year = date.$d.getFullYear().toString();
+  //     const month = (date.$d.getMonth() + 1).toString().padStart(2, '0'); // Get month (zero-based) and pad it to 2 digits
+  //     const formattedDate = {
+  //       year,
+  //       month
+  //     };
+  //     dispatch(loadMonthlyAttendenceDetailsStart(formattedDate));
+  //   } else {
+  //     console.error('Invalid date object:', date);
+  //   }
+  // };
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    if (date && typeof date === 'object' && date.$d instanceof Date) {
-      const year = date.$d.getFullYear().toString();
-      const month = (date.$d.getMonth() + 1).toString().padStart(2, '0'); // Get month (zero-based) and pad it to 2 digits
+    if (date && dayjs(date).isValid()) {
+      const year = dayjs(date).year().toString();
+      const month = (dayjs(date).month() + 1).toString().padStart(2, '0'); // Get month (zero-based) and pad it to 2 digits
       const formattedDate = {
         year,
-        month
+        month,
       };
       dispatch(loadMonthlyAttendenceDetailsStart(formattedDate));
     } else {
@@ -151,11 +166,10 @@ const ExpertMonthlyAttendenceList = () => {
                   onChange={handleDateChange}
                   views={['year', 'month']}
                   openTo="year"
+                  inputFormat="YYYY MM"
                   renderInput={(params) => (
                     <Controls.TextField
                       {...params}
-                      // Set the format to display only the month
-                      format="MMMM yyyy"
                       sx={{
                         svg: { color },
                         input: { color  },

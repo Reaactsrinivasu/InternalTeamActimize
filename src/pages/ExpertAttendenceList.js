@@ -202,6 +202,7 @@ const ExpertAttendenceList = () => {
     }
    
   };
+  const color = theme.palette.error.main;
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -367,6 +368,11 @@ const ExpertAttendenceList = () => {
                   renderInput={(params) => (
                     <Controls.TextField
                       {...params}
+                      sx={{
+                        svg: { color },
+                        input: { color  },
+                        label: { color  },
+                      }}
                     />
                   )}
                   classes={{ root: 'custom-datepicker-root', }}
