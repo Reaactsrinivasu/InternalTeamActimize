@@ -3,7 +3,6 @@ import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { createLeaveBankStart, loadLeaveBankStart, updateLeaveBankStart, deleteLeaveBankStart } from '../redux/actions/leaveBankActions';
 import { loadAllUsersStart } from '../redux/actions/allUsersActions';
-import Pagination from '@mui/material/Pagination';
 import Controls from "../components/Controls";
 import { initialValues, generateValidationSchema, } from "../components/Validations";
 import { ThemeProvider } from '@mui/material/styles';
@@ -21,23 +20,8 @@ const columns = [
   { id: "remaining_casual_leaves", label: "Remaining Casual Leaves" },
   { id: "remaining_sick_leaves", label: "Remaining Sick Leaves" },
 ];
-const style = {
-  p: 4,
-  top: '45%',
-  left: '50%',
-  width: 400,
-  boxShadow: 30,
-  maxHeight: '100%',
-  maxWidth: '100vw',
-  overflowY: 'auto',
-  position: 'absolute',
-  backgroundColor: (theme) =>
-    theme.palette.common.white,
-  transform: 'translate(-50%, -50%)',
-};
+
 const Leaves = () => {
-  const [show, setShow] = useState(false);
-  const [data, setData] = useState('');
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -79,14 +63,7 @@ const Leaves = () => {
   })
 
 
-  const showModal = (data) => {
-    setShow(true);
-    setData(data);
-  }
-  const closeModal = () => {
-    setShow(false);
-  }
-  const leavesBank = useSelector((state) => state.leavedata.data?.leave_bank);
+ 
   const formFields = [
     "expert_id",
     "sick_leaves",

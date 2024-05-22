@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createDmeritsDetailsStart, loadDmeritsDetailsStart, updateDmeritsDetailsStart } from '../redux/actions/expertDmeritsActions';
 import { loadAllUsersStart } from '../redux/actions/allUsersActions';
 import { initialValues, generateValidationSchema, } from "../components/Validations";
-import Pagination from '@mui/material/Pagination';
 import Controls from "../components/Controls";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
@@ -20,20 +19,7 @@ const columns = [
   { id: "reason", label: "Reasons" },
   { id: "seviority", label: "Severity" },
 ];
-const style = {
-  p: 4,
-  top: '45%',
-  left: '50%',
-  width: 400,
-  boxShadow: 30,
-  maxHeight: '100%',
-  maxWidth: '100vw',
-  overflowY: 'auto',
-  position: 'absolute',
-  backgroundColor: (theme) =>
-    theme.palette.common.white,
-  transform: 'translate(-50%, -50%)',
-};
+
 const ExpertDmerits = () => {
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);

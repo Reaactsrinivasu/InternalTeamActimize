@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
-import Rating from '@mui/material/Rating';
 import ContactEmergencyRoundedIcon from '@mui/icons-material/ContactEmergencyRounded';
 import Diversity1RoundedIcon from '@mui/icons-material/Diversity1Rounded';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -98,7 +97,6 @@ const ExpertWiseSkills = () => {
                         </Controls.Grid>
 
                         <Controls.Grid item xs={6} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center' }}>
-                          {/* <Rating name="read-only" sx={{ fontSize: '13px' }} value={item.rating} readOnly /> */}
                           <Controls.Typography variant='h7' sx={{ marginRight: '5px' }}>{item.rating} </Controls.Typography>
                           <StarIcon sx={{ fontSize: '15px' }} />
                         </Controls.Grid>

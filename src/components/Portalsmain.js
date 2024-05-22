@@ -40,7 +40,6 @@ const Portalsmain = () => {
     const [decodedProfilePic, setDecodedProfilePic] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const users = useSelector((state) => state.data.data);
     const [userData, setUserData] = useState(null);
 
     

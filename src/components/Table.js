@@ -88,47 +88,6 @@ const ResuableTable = React.memo(({ columns, data, editHandler, deleteHandler, s
                         )}
                       </StyledTableCell>
                     ))}
-                    {/* {!hideActionsCell && (
-                      <StyledTableCell
-                        align="center"
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          // justifyContent: "space-evenly",
-                        }}
-                      >
-                        <Grid container>
-                          <Grid item xs={3} >
-                          {showRemoveRedEyeIcon && (
-                            <Link>
-                              <RemoveRedEyeIcon sx={{ cursor: 'pointer',  }} onClick={() => showModal(row)} />
-                            </Link>
-                          )}
-                          </Grid>
-                          <Grid item xs={8} sx={{}} >
-                          {!row.approval && (
-                            <>
-                              <Link>
-                                <ModeEditIcon
-                                  sx={{ cursor: "pointer", color: theme.components.tables.styleOverrides.containedCustomedit.color, marginRight:'5px', }}
-                                  onClick={() => editHandler(row.id)}
-                                />
-                              </Link>
-                              {!hideDeleteIcon && (
-                                <Link>
-                                  <DeleteIcon
-                                    onClick={() => deleteHandler(row.id)}
-                                    sx={{ color: "#ff0000", cursor: "pointer", }}
-                                  />
-                                </Link>
-                              )}
-                            </>
-                          )}
-                          </Grid>
-                          </Grid>
-                      </StyledTableCell>
-                      
-                    )} */}
                     {display ? (
                       <>
                        {!hideActionsCell && (

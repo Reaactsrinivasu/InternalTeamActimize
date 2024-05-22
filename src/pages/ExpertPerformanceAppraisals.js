@@ -21,21 +21,7 @@ const columns = [
   { id: "appreciation_date", label: "Apprecation Date" },
   { id: "message", label: "Message" },
 ];
-const style = {
-  p: 4,
-  top: '45%',
-  left: '50%',
-  width: 400,
-  boxShadow: 30,
-  maxHeight: '100%',
-  maxWidth: '100vw',
-  overflowY: 'auto',
-  borderRadius: '10px',
-  position: 'absolute',
-  backgroundColor: (theme) =>
-    theme.palette.common.white,
-  transform: 'translate(-50%, -50%)',
-};
+
 const ExpertPerformanceAppraisals = () => {
 
   const [userInfo, setUserInfo] = useState({});

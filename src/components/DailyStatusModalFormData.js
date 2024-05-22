@@ -58,7 +58,7 @@ const DailyStatusModalFormData = ({ show, closeModal, data }) => {
                                         <Controls.Typography variant='h11' sx={{ textAlign: 'center' }}>Description</Controls.Typography>
                                         <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
                                     </Controls.Grid>
-                                    <Controls.Grid xs={9} sx={{paddingLeft:'20px'}}>
+                                    <Controls.Grid xs={9.2} sx={{paddingLeft:'20px'}}>
                                         <Controls.Typography variant='h12' sx={{ textAlign: 'center', wordWrap: 'break-word'}}>{data?.description}</Controls.Typography>
                                     </Controls.Grid>
                                 </Controls.Grid>

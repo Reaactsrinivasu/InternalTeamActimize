@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { useFormik } from "formik";
-import theme from "../Theme"; // Import the theme
 import { useSelector, useDispatch } from "react-redux";
 import {
   createWorkExperienceDetailsStart,
@@ -14,7 +13,6 @@ import Controls from "../components/Controls";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { Pagination } from "@mui/material";
 import NoDataFound from "../components/NoDataComponent";
 import LoadingComponent from "../components/LoadingComponent";
 const ResuableTable = lazy(() => import("../components/Table"));
@@ -39,7 +37,6 @@ const WorkExperience = () => {
   const [open, setOpen] = useState(false);
   const [initialFormValue, setInitialFormValue] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [messageData, setMessageData] = useState(true);
   const handleOpen = () => { setOpen(true); }
   const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
   const dispatch = useDispatch();
@@ -82,7 +79,6 @@ const WorkExperience = () => {
   });
   const workExperienceData = useSelector((state) => state.workexpdata?.data?.work_experiences || []);
   const totalRecords = useSelector((state) => state.workexpdata?.data?.total_count || []);
-  console.log('this is data ---->', workExperienceData);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -97,14 +93,14 @@ const WorkExperience = () => {
   useEffect(() => {
     dispatch(loadWorkExperienceDetailsStart());
 
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(loadWorkExperienceDetailsStart());
       setLoading(false);
     }, 1000)
-  }, [])
+  }, )
 
   let id = userInfo.id;
   useEffect(() => {

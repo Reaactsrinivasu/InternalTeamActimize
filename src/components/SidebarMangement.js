@@ -17,7 +17,6 @@ import { SidebarDataMangement } from './SidebarDataMangement';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../Theme";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { loadUsersStart } from '../redux/actions/UserActions';
 import { loadUserProfileDetailsStart } from '../redux/actions/userProfileDataActions';
 
 const drawerWidth = 260;
@@ -257,12 +256,12 @@ const SidebarMangement = ({ open, setOpen }) => {
                                 <Avatar alt="Avatar" src={decodedProfilePic} />
                             </Grid>
                             <Grid item>
-                                <Typography variant="h4"
+                                <Typography variant="h9"
 
                                 >
                                     {users?.name} 
                                 </Typography>
-                                <Typography variant="h4" sx={{ marginTop: "10px" }}
+                                <Typography variant="h10" sx={{ }}
 
                                 >
                                     {users?.designation}

@@ -36,12 +36,10 @@ const months = [
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 const ExpertMothlyStatus = () => {
-  const anchorRef = useRef(null);
   const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => { setOpen(true); }
-  const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
   const [selectedDate, setSelectedDate] = useState(null); // State to store the selected date
   const dispatch = useDispatch();
   const handleToggle = () => {
@@ -137,7 +135,6 @@ const color = theme.palette.error.main
             </Controls.Box>
           </Controls.ReusablePaper>
         </Controls.Box>
-        {/* <Controls.Paper sx={{ mt: 5, borderRadius: '10px', backgroundColor: theme.components.tables.styleOverrides.containedPrimaryModelPaper.backgroundColor, }}> */}
         <Controls.Grid container spacing={2}>
           <Controls.Grid item xs={10}>
             <Controls.Paper sx={{ borderRadius: "10px", }}>

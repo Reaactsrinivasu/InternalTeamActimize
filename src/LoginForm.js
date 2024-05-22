@@ -191,31 +191,6 @@ function LoginForm() {
                     </InputAdornment>
                   ),
                 }}
-                // sx={{
-                //   borderRadius: theme.shape.borderRadius,
-                //   // boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                //   "& .MuiOutlinedInput-root": {
-                //     borderRadius: theme.shape.borderRadius,
-                //     "&:hover .MuiOutlinedInput-notchedOutline": {
-                //       borderColor: theme.palette.success.main, // Border color on hover
-                //     },
-                //     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                //       borderColor: theme.palette.success.main, // Border color when focused
-                //     },
-                //   },
-                //   "& .MuiInputLabel-root": {
-                //     color: theme.palette.success.main, // Label color
-                //   },
-                //   "& .MuiOutlinedInput-notchedOutline": {
-                //     border: "none",
-                //     border: "2px solid",
-                //     borderColor: theme.palette.success.main,
-                //     borderRadius: "40px",
-                //   },
-                //   "& .MuiInputLabel-outlined.Mui-focused": {
-                //     color: theme.palette.success.main, // Label color when focused
-                //   },
-                // }}
                 sx={{
                   borderRadius: theme.shape.borderRadius,
 

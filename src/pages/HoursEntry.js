@@ -1,19 +1,16 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { useFormik } from 'formik';
 import  { tableCellClasses } from '@mui/material/TableCell';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Select from '@mui/material/Select';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect,  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Switch from '@mui/material/Switch';
 import { createHoursEntryDetailsStart, loadHoursEntryDetailsStart } from '../redux/actions/hoursEntryActions';
 import { updateHoursEntryDetailsStart } from '../redux/actions/hoursEntryActions';
-import { ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider from Material-UI
 import theme from "../Theme"; // Import your theme file
-import * as Yup from 'yup';
 import {
   loadCurrentWeekDetailsStart,
 } from '../redux/actions/currentWeekActions';
@@ -48,21 +45,7 @@ const HoursEntry = () => {
   const shouldDisplayUpdateButton = !weekdataone || (Object.keys(weekdataone.weekly_status).length === 0 && !currentWeekDataone.approval);
   let currentWeekData = useSelector((state) => state.weekdata?.data);
   let currentWeekDataone = useSelector((state) => state?.hoursentrydata?.data);
-    const initialValues = {
-      TaskName: '',
-      Hours: '',
-      leave:'',
-    };
-    const validationSchema = Yup.object({
-      TaskName: Yup.string()
-      .max(30, 'Task Name must be at most 30 characters')
-      .required('Task Name is required'),
-      Hours: Yup .array()
-      .required('Hours required'),
-        leave: Yup .array()
-     .required("Leave type is required")
-   
-    });
+
   useEffect(() => {
     dispatch(loadCurrentWeekDetailsStart());
     dispatch(loadHoursEntryDetailsStart());
@@ -171,19 +154,19 @@ const HoursEntry = () => {
     const allFieldsProvided = addHoursData.every(entry => entry.TaskName && (entry.Hours || entry.Day) && !(entry.Hours && entry.Day)); // Modified condition
     const allDaysFilled = addHoursData.length === 6 && addHoursData.every(entry => entry.Hours || entry.Day); // Unchanged condition
   weekData = weekData?.map(i=>{
-    let j =addHoursData?.find(j=>j.day == i.day)
+    let j =addHoursData?.find(j=>j.day === i.day)
     if(j?.day){
-      if(j.TaskName == ''){
+      if(j.TaskName === ''){
         i = {...i, isTaskname: true}
       } else {
         i = {...i, isTaskname: false}
       }
-      if(j.Day == ''){
+      if(j.Day === ''){
         i = {...i, isDay: true}
       } else {
         i = {...i, isDay: false}
       }
-      if(j.Hours == ''){
+      if(j.Hours === ''){
         i = {...i, isHours: true}
       } else {
         i = {...i, isHours: false}
@@ -224,23 +207,21 @@ const HoursEntry = () => {
     }
   };
   const handleUpdate = (id) => {
-    const isTaskNameCleared = addHoursData.some(entry => entry.TaskName === '');
-    const isHoursCleared = addHoursData.some(entry => entry.Hours === '');
     const allFieldsFilled = addHoursData.every(entry => entry.TaskName && (entry.Hours || entry.Day) && !(entry.Hours && entry.Day));
     weekData = weekData?.map(i=>{
-      let j =addHoursData?.find(j=>j.day == i.day)
+      let j =addHoursData?.find(j=>j.day === i.day)
       if(j?.day){
-        if(j.TaskName == ''){
+        if(j.TaskName === ''){
           i = {...i, isTaskname: true}
         } else {
           i = {...i, isTaskname: false}
         }
-        if(j.Day == ''){
+        if(j.Day === ''){
           i = {...i, isDay: true}
         } else {
           i = {...i, isDay: false}
         }
-        if(j.Hours == ''){
+        if(j.Hours === ''){
           i = {...i, isHours: true}
         } else {
           i = {...i, isHours: false}
@@ -287,12 +268,7 @@ const HoursEntry = () => {
     Controls.toast.success('Data Updated  Successfully');
     setTimeout(() => { dispatch(loadHoursEntryDetailsStart()) }, 500);
   };
-  const formik = useFormik({
-    initialValues: initialValues,
-    onSubmit: handleSubmit,
-    validationSchema: validationSchema,
-  });
- 
+
   return (
   
     <>

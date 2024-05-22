@@ -19,7 +19,6 @@ import { loadAllUsersStart } from '../redux/actions/allUsersActions';
 import ResuableTable from "../components/Table";
 import { initialValues, generateValidationSchema, } from "../components/Validations";
 import Controls from "../components/Controls";
-import ViewLeaveDetails from './ViewLeaveDetails';
 import ProjectListModalFormData from '../components/ProjectsListModalFormData';
 import NoDataFound from '../components/NoDataComponent';
 import LoadingComponent from '../components/LoadingComponent';
@@ -31,20 +30,7 @@ const columns = [
   { id: "end_date", label: "End Date" },
   { id: "members", label: "Team" },
 ];
-const style = {
-  p: 4,
-  top: '45%',
-  left: '50%',
-  width: 400,
-  boxShadow: 30,
-  maxHeight: '100%',
-  maxWidth: '100vw',
-  overflowY: 'auto',
-  position: 'absolute',
-  backgroundColor: (theme) =>
-    theme.palette.common.white,
-  transform: 'translate(-50%, -50%)',
-};
+
 const ProjectsMangement = () => {
 
   const [show, setShow] = useState(false);

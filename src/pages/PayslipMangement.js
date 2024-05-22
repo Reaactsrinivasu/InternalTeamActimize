@@ -15,12 +15,7 @@ import Grid from "@mui/material/Grid";
 import theme from "../Theme";
 import PleasEnterDataImgComponent from '../components/PleaseEnterDataImgComponent';
 const PayslipMangement = (data) => {
-  const [userInfo, setUserInfo] = useState({});
-  const [editMode, setEditMode] = useState(false);
   const [formChange , setFormChange] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => { setOpen(true); }
-  const handleClose = () => { setOpen(false); formik.resetForm(); setUserInfo({}); };
   const dispatch = useDispatch();
   const formFields = [
     "salary",
@@ -54,12 +49,7 @@ const PayslipMangement = (data) => {
             <Controls.Grid item xs={2.2}>
               <Controls.ReusablePaper elevation={1} sx={{ padding: '0px', mb: 2, mt: 2, boxShadow: '0px 10px 80px rgba(0, 0, 0, 0.1)', borderRadius: '10px' }} >
                 <Controls.Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                  {/* <Controls.ResuableHeaderTypo
-                  typographyComponent="span"
-                  typographyVariant="h6"
-                  sx={{ fontSize: '23px', mt: 1.5, ml: 2, mb: 1.5 }}
-                  typographyText="Expert PaySlip"
-                /> */}
+             
                   <Controls.Typography variant="h2" sx={{ mt: 1.5, ml: 2, mb: 1.5 }}>
                     PaySlip
                   </Controls.Typography>
@@ -76,26 +66,6 @@ const PayslipMangement = (data) => {
                     }}
                     autoComplete="off"
                   >
-                    {/* <Controls.TextField
-                      sx={{  width: '65%',margin:'5px 0px' }}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                      
-                      fullWidth
-                      size="small"
-                      type="text"
-                      margin="dense"
-                      id="salary"
-                      variant="outlined"
-                      label="Salary(CTC)"
-                      name="salary"
-                      onBlur={formik.handleBlur}
-                      value={formik.values.salary}
-                      onChange={formik.handleChange}
-                      error={formik.touched.salary && Boolean(formik.errors.salary)}
-                      helperText={formik.touched.salary && formik.errors.salary}
-                    /> */}
                     <Controls.TextField
                       sx={{
                         width: '65%',
@@ -152,7 +122,7 @@ const PayslipMangement = (data) => {
                       buttonType="submit"
                       buttonVariant="contained"
                       buttonColor="info"
-                      buttonText={!editMode ? "Submit" : "Update"}
+                      buttonText="Submit"
                       sx={{
                         width: 55,
                         // height: 45,
@@ -180,9 +150,7 @@ const PayslipMangement = (data) => {
                       sx={{
                         margin: '20px',
                         padding: '16px',
-                        // border: '1px solid #ccc',
                         borderRadius: '8px',
-                        // backgroundColor: '#f9f9f9',
                         maxWidth: '1000px',
                         textAlign: 'left',
                       }}
