@@ -1,9 +1,9 @@
 import * as types from './actionTypes';
 //adding bank details
-export const createBankDetailsStart =  (users) =>(
+export const createBankDetailsStart =  (users, id) =>(
     {
     type:types.CREATE_BANK_DETAILS_START,
-    payload: users,
+    payload: {users, id},
 });
 export const createBankDetailsSuccess =  () =>({
     type:types.CREATE_BANK_DETAILS_SUCCESS,
@@ -13,8 +13,10 @@ export const createBankDetailsError = (error) =>({
     payload: error,
 });
 //loading bank details
-export const loadBankDetailsStart = () =>({
-    type:types.LOAD_BANK_DETAILS_START,
+export const loadBankDetailsStart = (id) =>(
+    {
+    type: types.LOAD_BANK_DETAILS_START,
+    id: id,
 });
 export const loadBankDetailsSuccess = (data) =>({
     type:types.LOAD_BANK_DETAILS_SUCCESS,

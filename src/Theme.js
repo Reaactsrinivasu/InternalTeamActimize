@@ -83,12 +83,12 @@ const theme = createTheme({
         }, // this is for the model add or update button  colors
         containedCustom: {
           color: getcustomColorredColor, // button text color for the page reuseable button for the add button.
-          borderColor:getcustomColorredColor,
+          borderColor: getcustomColorredColor,
           backgroundColor: getsuccessColor, // background color for the page reuseable button for the add button.
           "&:hover": {
             backgroundColor: getsuccessColor, // background  hover color for the page reuseable button for the add button.
           },
-        }, 
+        },
         containedUpdateButton: {
           textColor: getcustomColorwhiteColor,
           backgroundColor: getcustomColorOrange,
@@ -279,6 +279,20 @@ theme.typography.subtitle2 = {
 theme.typography.subtitle3 = {
   color: getcustomColorredColor(theme),
 }
+
+theme.typography.h11 = {
+  color: theme.palette.error.main,
+  fontFamily: 'Monospace',
+  fontWeight: 'bold',
+  fontSize: '16px'
+}
+theme.typography.h12 = {
+  color: getcustomColorwhiteColor,
+  fontFamily: 'Verdana, sans-serif',
+  fontWeight: 'bold',
+  fontSize: '12px'
+}
+
 
 
 theme.components.MuiPagination = {

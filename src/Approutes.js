@@ -110,7 +110,7 @@ const Approutes = () => (
         <Route path="/hr/experts/expertpage/familydetails/:id" element={<ExpertWisetFamily />} />
         <Route path="/hr/experts/expertpage/skills/:id" element={<ExpertWiseSkills />} />
         <Route path="/hr/experts/expertpage/workexperience/:id" element={<ExpertWiseExperience />} />
-        <Route path="/hr/experts/expertpage/bankdetails/:id" element={<ExpertWisebankDetails />} />
+        <Route path="/hr/experts/expertpage/bankdetails/:user_id" element={<ExpertWisebankDetails />} />
         <Route path="/hr/experts/expertpage/projects/:id" element={<ExpertWiseProjects />} />
         <Route path="/hr/experts/expertpage/leavebank/:id" element={<ExpertWiseLeaveBank />} />
 

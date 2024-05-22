@@ -1,8 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { red } from '@mui/material/colors';
 import Controls from "../components/Controls";
 import theme from '../Theme';
 
@@ -12,10 +9,10 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 680,
-    bgcolor: theme.palette.customColorOrange.main,
+    bgcolor: "#FFFFFF",
     borderRadius: 2, // Adjust the value as needed
     boxShadow: 24,
-    p: 4,
+    p: 0,
 };
 
 const DailyStatusModalFormData = ({ show, closeModal, data }) => {
@@ -28,50 +25,46 @@ const DailyStatusModalFormData = ({ show, closeModal, data }) => {
                     aria-describedby="modal-modal-description"
                 >
                     <Controls.Grid sx={style}>
+                        <Controls.Grid xs={12} sx={{ backgroundColor: theme.palette.error.main, padding: '10px',borderTopLeftRadius:'5px',borderTopRightRadius:'5px' }}>
+                            <Controls.Typography variant='h3' sx={{color:theme.palette.success.main}} textAlign='center'>{data?.task_name}</Controls.Typography>
+                        </Controls.Grid>
                         <Controls.Grid container sx={{ display: 'block' }}>
-                            <Controls.Grid sx={{ display: 'flex', marginBottom: '20px' }}>
-                                <Controls.Grid xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Controls.Grid xs={5} sx={{ display: 'flex', }}>
-                                        <Controls.Typography variant='h5'>Status/Update </Controls.Typography>
-                                        <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                            <Controls.Grid sx={{ display: 'flex', marginBottom: '0px' }}>
+                                <Controls.Grid xs={6} sx={{ display: 'flex', alignItems: 'center', padding:'10px 20px' }}>
+                                    <Controls.Grid xs={6} sx={{ display: 'flex', }}>
+                                        <Controls.Typography variant='h11'>Status/Update </Controls.Typography>
+                                        <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
                                     </Controls.Grid>
                                     <Controls.Grid xs={6}>
-                                        <Controls.Typography variant='h4' sx={{ textAlign: 'center', }}>{data?.daily_status}</Controls.Typography>
+                                        <Controls.Typography variant='h12' sx={{ textAlign: 'center', marginLeft:'20px' }}>{data?.daily_status}</Controls.Typography>
                                     </Controls.Grid>
 
                                 </Controls.Grid>
                                 <Controls.Grid xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Controls.Grid xs={5} sx={{ display: 'flex', }}>
-                                        <Controls.Typography variant='h5'>Task Progress </Controls.Typography>
-                                        <Controls.Typography variant='h5' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
+                                    <Controls.Grid xs={6} sx={{ display: 'flex', }}>
+                                        <Controls.Typography variant='h11'>Task Progress </Controls.Typography>
+                                        <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
                                     </Controls.Grid>
                                     <Controls.Grid xs={6}>
-                                        <Controls.Typography variant='h4' sx={{ textAlign: 'center', }}>{data?.task_progress}</Controls.Typography>
+                                        <Controls.Typography variant='h12' sx={{ textAlign: 'center', marginLeft:'20px' }}>{data?.task_progress}</Controls.Typography>
                                     </Controls.Grid>
 
                                 </Controls.Grid>
                             </Controls.Grid>
 
-                            <Controls.Grid container sx={{ justifyContent: 'center',}} >
-                            <Controls.Grid xs={10} sx={{ display: 'block', alignItems: 'center' , margin:'15px'}}>
-                                    <Controls.Grid xs={12} >
-                                        <Controls.Typography variant='h3' sx={{textAlign:'center'}}>Task Name</Controls.Typography>
+                            <Controls.Grid container sx={{padding:'0px 20px'}} >
+                                <Controls.Grid xs={12} sx={{ display: 'flex',  }}>
+                                    <Controls.Grid xs={2.8} sx={{display:'flex', }} >
+                                        <Controls.Typography variant='h11' sx={{ textAlign: 'center' }}>Description</Controls.Typography>
+                                        <Controls.Typography variant='h11' sx={{ marginLeft: 'auto' }}>:</Controls.Typography>
                                     </Controls.Grid>
-                                    <Controls.Grid xs={12}>
-                                        <Controls.Typography variant='h5' sx={{ textAlign:'center' }}>{data?.task_name}</Controls.Typography>
-                                    </Controls.Grid>
-                                </Controls.Grid>
-                                <Controls.Grid xs={10} sx={{ display: 'block', alignItems: 'center' }}>
-                                    <Controls.Grid xs={12} >
-                                        <Controls.Typography variant='h3' sx={{textAlign:'center'}}>Description</Controls.Typography>
-                                    </Controls.Grid>
-                                    <Controls.Grid xs={12}>
-                                        <Controls.Typography variant='h5' sx={{ textAlign:'center' }}>{data?.description}</Controls.Typography>
+                                    <Controls.Grid xs={9} sx={{paddingLeft:'20px'}}>
+                                        <Controls.Typography variant='h12' sx={{ textAlign: 'center', wordWrap: 'break-word'}}>{data?.description}</Controls.Typography>
                                     </Controls.Grid>
                                 </Controls.Grid>
                             </Controls.Grid>
                         </Controls.Grid>
-                        <Controls.Grid sx={{ marginTop: '20px' }}>
+                        <Controls.Grid  sx={{display: 'flex', flexDirection: 'row', justifyContent: 'end', margin: '10px'  }}>
                             <Controls.FormAddCloseButton
                                 variant="contained"
                                 onClick={() => {

@@ -9,7 +9,6 @@ import NoDataFoundDashBoard from '../components/NoDataFoundDashBoard';
 const HolidaysSlider = (props) => {
     const [holidays, setHolidays] = useState([]);
     let dashboardDetails = useSelector((state) => state.dashboardData.data);
-    console.log(dashboardDetails, "dashboardDetails");
     useEffect(() => {
 
         if (dashboardDetails) {
@@ -45,8 +44,7 @@ const HolidaysSlider = (props) => {
         // </div>
         <>
             <Grid container sx={{ justifyContent: 'center', height: "23rem",}}>
-                {dashboardDetails?.holidays?.length > 0 ? (
-                    <>
+              
                        <Grid item xs={10} sx={{ margin: '30px 0px', backgroundColor: theme.palette.success.main, borderRadius: '10px' }}>
                     <Grid sx={{ marginTop: '20px' }}>
                         <Typography variant='subtitle1' sx={{ textAlign: 'center', display :props.display || 'block'  }}>Upcoming Holidays</Typography>
@@ -73,10 +71,6 @@ const HolidaysSlider = (props) => {
 
                     </Grid>
                 </Grid>
-                    </>
-                ) : (
-                    <NoDataFoundDashBoard />
-                )}
              
             </Grid>
         </>

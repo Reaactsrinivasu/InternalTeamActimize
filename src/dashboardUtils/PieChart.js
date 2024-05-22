@@ -178,16 +178,12 @@ const PieChart = () => {
 
     return (
         <>
-        {totalWorkingHoursCheck === 0 ? (
-            <NoDataFoundDashBoard />
-        ) : (
-            <>
-            <Controls.Box sx={{ mt: 3, }}>
-                <ReactApexChart options={pieChart?.options} series={pieChart?.series} type="pie" height={350} width='100%' />
-            </Controls.Box>
-            </>
-        )}
-        </>
+        
+        <Controls.Box sx={{ mt: 3, }}>
+            <ReactApexChart options={pieChart?.options} series={pieChart?.series} type="pie" height={350} width='100%' />
+        </Controls.Box>
+   
+    </>
     );
 };
 
