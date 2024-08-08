@@ -12,10 +12,12 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const users = useSelector((state) => state.data.data);
+  console.log("users",users);
   const [decodedProfilePic, setDecodedProfilePic] = useState('');
   useEffect(() => {
     if (users && users.profile_pic) {
       const base64Image = users.profile_pic;
+      console.log("bfhbfjb",base64Image);
       const base64String = base64Image.split(';base64,').pop();
       const cleanedBase64 = base64String.replace(/[^A-Za-z0-9+/]/g, '');
       try {
@@ -26,6 +28,7 @@ const UserProfile = () => {
         }
         const blob = new Blob([bytes], { type: 'image/jpeg' });
         const imageUrl = URL.createObjectURL(blob);
+         console.log("imageurl",imageUrl)
         setDecodedProfilePic(imageUrl);
       } catch (error) {
       }

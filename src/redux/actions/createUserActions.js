@@ -29,7 +29,7 @@ export const createProfileStart = (users) => {
     return {
         type: types.CREATE_PROFILE_START,
         payload: users,
-    };
+            };
 };
 export const createProfileSuccess =  () =>({
     type:types.CREATE_PROFILE_SUCCESS, 

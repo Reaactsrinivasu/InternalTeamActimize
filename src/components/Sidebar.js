@@ -19,6 +19,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { loadUsersStart } from '../redux/actions/UserActions';
 import { loadUserProfileDetailsStart, loadUserProfileDetailsSuccess } from '../redux/actions/userProfileDataActions';
 
+
+
+
+
+
+
 const drawerWidth = 260;
 const FixedSidebar = styled('div')({
     height: '90vh',
@@ -232,7 +238,17 @@ const Sidebar = ({ open, setOpen }) => {
         dispatch(loadUserProfileDetailsStart());
     }, [dispatch]);
     const users = useSelector((state) => state.userprofiledetailsdata?.data?.current_user || []);
+    console.log("bro im in side bar",users)
     localStorage.setItem('id',users.id);
+
+
+
+
+
+
+
+
+    
     useEffect(() => {
         if (users && users.profile_pic) {
             const base64Image = users.profile_pic;

@@ -195,13 +195,14 @@ const Portalsmain = () => {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
-                                        backgroundImage: 'url("https://www.hyperoffice.com/blog/wp-content/uploads/2022/08/employees.png")',
+                                        backgroundImage: 'url("https://sixthsenseit.com/webroot/upload/admin/solutions_services//2020-02-25_solutions_img_1582619692.png")',
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
                                         minHeight: '250px', // Set your desired height
                                         cursor: 'pointer',
+
                                     }}>
-                                    <Controls.Typography  variant="h1">Management Portal</Controls.Typography>
+                                    <Controls.Typography  variant="h1" >Management Portal</Controls.Typography>
                                     <Controls.CardContent style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                     </Controls.CardContent>
                                 </Controls.Card>
@@ -238,7 +239,7 @@ const Portalsmain = () => {
                                             display: 'flex',
                                             flexDirection: 'column',
                                             alignItems: 'center',
-                                            backgroundImage: 'url("https://www.hyperoffice.com/blog/wp-content/uploads/2022/08/employees.png")',
+                                            backgroundImage: 'url("https://sixthsenseit.com/webroot/upload/admin/solutions_services//2020-02-25_solutions_img_1582619692.png")',
                                             backgroundSize: 'cover',
                                             backgroundPosition: 'center',
                                             minHeight: '250px', // Set your desired height

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useEffectLayout } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { createProfileStart, createUserStart } from '../redux/actions/createUserActions';
@@ -16,10 +16,14 @@ import {
 import { useRef } from 'react';
 import Controls from "../components/Controls";
 import { loadUsersStart } from '../redux/actions/UserActions';
+
+
+
 const PersonalDetails = () => {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
   const personalData = useSelector((state) => state.data.data);
+  console.log("i am personalsetails in perwsonal details page",personalData)
   const id = personalData?.id;
   const formFields = [
     "first_name",
@@ -43,17 +47,27 @@ const PersonalDetails = () => {
   const handleSubmit = (values, { setStatus, resetForm }) => {
     setStatus();
     if (!editMode) {
+      console.log("values",values)
       dispatch(createUserStart(values));
       // resetForm();
-      window.location.reload();
+     
       // this.forceUpdate();
 
       Controls.toast.success('Data Added Successfully');
+       // window.location.reload();
     } else {
+      console.log("values",values)
+
       dispatch(createUserStart(values));
+   
       Controls.toast.success('Data Updated Successfully');
+      
+         
+         
     }
   }
+
+
 
 
   const formik = useFormik({
@@ -67,6 +81,15 @@ const PersonalDetails = () => {
       formik.setValues(personalData);
     }
   }, [personalData]);
+
+
+ 
+
+
+
+
+
+
   const [base64String, setBase64String] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState('');
@@ -81,12 +104,14 @@ const PersonalDetails = () => {
   };
   const handleImageUpload = (e) => {
     const imageUrl = URL.createObjectURL(e.target.files[0]);
+    console.log("handle image url",imageUrl)
     setShowModal(true);
     setImage(imageUrl);
     setFormChanged(false);
 
   };
   const handleSave = () => {
+    console.log("handle save");
     if (editorRef && editorRef.current) {
       const canvas = editorRef.current.getImage();
       setShowModal(false);
@@ -105,23 +130,30 @@ const PersonalDetails = () => {
         smallerCanvas.height
       );
       const base64String = smallerCanvas.toDataURL('image/jpeg', 0.5); // Adjust the quality (0.5 is 50% quality)
+      console.log("profibase64String data",base64String)
       const formData = {
-        profile_pic: base64String, // Adding the Base64 string to your form data
+        
+        profile_pic: base64String,
+        // console.log(profile_pic) // Adding the Base64 string to your form data
       };
       // Dispatching the action with the form data
+       
       dispatch(createProfileStart(formData));
+     
       // Log the Base64 string to the console
       setDecodedProfilePic(base64String);
       setCroppedImage(base64String);
       setBase64String(base64String);
       if( editMode === true){
-        window.location.reload();
+       
+        // window.location.reload();
       }
       this.forceUpdate();
     }
   };
   const editorRef = useRef();
   const users = useSelector((state) => state.data.data);
+  console.log("profile data",users);
   const [decodedProfilePic, setDecodedProfilePic] = useState('');
   useEffect(() => {
     if (users && users.profile_pic) {
@@ -147,6 +179,7 @@ const PersonalDetails = () => {
   useEffect(() => {
     dispatch(loadUsersStart());
   }, [])
+
   
 
   return (
@@ -573,7 +606,7 @@ const PersonalDetails = () => {
                             formik.handleChange(event);
                             setFormChanged(true);
                           }}
-                          placeholder='Your current address'
+                          placeholder='Your cuuseSelectorrrent address'
                           value={formik.values.present_address}
                           helperText={formik.touched.present_address && formik.errors.present_address ? (<span style={{ color: 'red' }}>{formik.errors.present_address}</span>) : ('')}
                           error={formik.touched.present_address && Boolean(formik.errors.present_address)}

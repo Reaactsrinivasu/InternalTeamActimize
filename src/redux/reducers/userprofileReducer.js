@@ -8,6 +8,7 @@ const initialState = {
            },
 };
 const createProfileReducer = (state = initialState.create, action)=>{
+   
     switch (action.type) {
             case types.CREATE_PROFILE_START:
                 return {

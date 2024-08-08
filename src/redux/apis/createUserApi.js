@@ -6,6 +6,7 @@ export const createUserApi = async (users) => {
     return new Promise(async (resolve, reject) => {
         try {
           const result = await api.post(`${endPoints}`,users);
+          console.log("create user api data",result);
           resolve(result);
         } catch(error) {
           reject(error);
@@ -20,6 +21,7 @@ export const createUserApi = async (users) => {
               isMultipart: true
             }
             const result = await api.post(`${endPointsone}`,body);
+             console.log("create profile api data",result);
             resolve(result);
           } catch(error) {
             reject(error);
